@@ -1,5 +1,5 @@
 * {
-    font-family: "LigaMonaco Nerd Font"
+    font-family: "LigaMonaco Nerd Font";
     color: #f3f4f6;
 }
 
@@ -12,8 +12,8 @@ window {
     background: #000000;
     border-radius: 0px;
     padding: 12px 20px;
-    min-width: 200px;
-    font-size: 18px;
+    min-width: 150px;
+    font-size: 10px;
     border: 2px solid #FFFFFF;
     box-shadow: 0 8px 32px 0 rgba(0,0,0,0.45);
 }
@@ -21,7 +21,7 @@ window {
 #osd .icon {
     font-size: 36px;
     margin-right: 10px;
-    color: #a8a29e; /* stone-400 */
+    color: #FFFFFF;
 }
 
 #osd .label {
@@ -41,13 +41,13 @@ window {
 
 progressbar:disabled,
 image:disabled {
-    opacity: 0.5;
+    opacity: 1.0;
 }
 
 progressbar {
-    min-height: 10px;
-    border-radius: 999px;
-    background: #292524;
+    min-height: 5px;
+    border-radius: 0px;
+    background: #FFFFFF;
     border: none;
 }
 
@@ -55,12 +55,12 @@ trough {
     min-height: inherit;
     border-radius: inherit;
     border: none;
-    background: #292524;
+    background: #000000;
 }
 
 progress {
     min-height: inherit;
     border-radius: inherit;
     border: none;
-    background: #a8a29e;
+    background: #FFFFFF;
 }

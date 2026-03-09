@@ -22,6 +22,7 @@ make
 mako
 man-db
 man-pages
+mpv
 neovim
 networkmanager
 newsboat
@@ -47,8 +48,6 @@ unzip
 valgrind
 vim
 virt-manager
-vlc
-vlc-plugin-ffmpeg
 waybar
 wget
 wireshark-qt

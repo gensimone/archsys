@@ -1,0 +1,52 @@
+#!/bin/sh
+
+ROOT="$(cd "$(dirname "$0")" || exit 1; pwd -P)"
+
+if ! sudo pacman --needed --noconfirm -Syu -< ./pkgs; then
+    exit 1
+    echo "Aborted" >&2
+fi
+
+exec_func() {
+  while IFS= read -r line; do
+    if ! [[ "$line" =~ ^[[:space:]]*# ]] && [ -n "$line" ]; then
+      "$2" "$line"
+    fi
+  done < "$1"
+}
+
+enable_user_service() {
+    systemctl --user enable $1
+}
+
+enable_system_wide_service() {
+    sudo systemctl enable $1
+}
+
+create_group() {
+    sudo groupadd $1
+}
+
+add_user_to_group() {
+  sudo usermod -aG "$1" "$USER"
+}
+
+exec_func "$ROOT/user-services"        enable_user_service
+exec_func "$ROOT/services"             enable_system_wide_service
+exec_func "$ROOT/groups"               create_group
+exec_func "$ROOT/groups"               add_user_to_group
+
+find "$ROOT/dotfiles" -type f -print0 | while IFS= read -r -d '' file; do
+  target="$HOME/${file#*dotfiles/}"
+  mkdir -pv $(dirname $target)
+  ln -sfv $file $target
+done
+
+for file in $ROOT/arch.d/*.sh; do
+    . "$file"
+done
+
+for font in $ROOT/fonts/*; do
+    sudo cp -rfv $font /usr/share/fonts
+done
+fc-cache -fv

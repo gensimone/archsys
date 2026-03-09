@@ -10,7 +10,7 @@
   "exclusive": false,
   "modules-left": ["network"],
   "modules-center": ["clock"],
-  "modules-right": ["tray", "pulseaudio", "idle_inhibitor"],
+  "modules-right": ["tray", "idle_inhibitor", "battery"],
 
   "idle_inhibitor": {
     "format": "{icon}",
@@ -20,22 +20,9 @@
     }
   },
 
-  "pulseaudio": {
-    "format": "{icon}",
-    "format-bluetooth": "{icon}",
-    "format-muted": "",
-    "format-icons": {
-      "headphone": " ",
-      "hands-free": " ",
-      "headset": " ",
-      "phone": "",
-      "phone-muted": "",
-      "portable": "",
-      "car": "",
-      "default": ["", ""]
-    },
-    "scroll-step": 1,
-    "on-click": "pavucontrol",
-    "ignored-sinks": ["Easy Effects Sink"]
+  "battery": {
+    "bat": "BAT0",
+    "interval": 60,
+    "format": "B: {capacity}%",
   }
 }

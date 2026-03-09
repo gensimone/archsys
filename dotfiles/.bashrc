@@ -12,3 +12,4 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 set -o vi
+

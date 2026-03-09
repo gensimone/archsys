@@ -1,0 +1,66 @@
+* {
+    font-family: "LigaMonaco Nerd Font"
+    color: #f3f4f6;
+}
+
+window {
+    background: transparent;
+    border-radius: 0px;
+}
+
+#osd {
+    background: #000000;
+    border-radius: 0px;
+    padding: 12px 20px;
+    min-width: 200px;
+    font-size: 18px;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.45);
+}
+
+#osd .icon {
+    font-size: 36px;
+    margin-right: 10px;
+    color: #a8a29e; /* stone-400 */
+}
+
+#osd .label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+    color: #e7e5e4;
+}
+
+#osd .value {
+    font-size: 16px;
+    color: #fbbf24;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+progressbar:disabled,
+image:disabled {
+    opacity: 0.5;
+}
+
+progressbar {
+    min-height: 10px;
+    border-radius: 999px;
+    background: #292524;
+    border: none;
+}
+
+trough {
+    min-height: inherit;
+    border-radius: inherit;
+    border: none;
+    background: #292524;
+}
+
+progress {
+    min-height: inherit;
+    border-radius: inherit;
+    border: none;
+    background: #a8a29e;
+}

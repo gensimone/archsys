@@ -1,18 +1,5 @@
 border.width:				                          1
 
-menu.title.bg:                                        flat solid
-menu.title.bg.color:                                  #000000
-menu.title.text.color:                                #FFFFFF
-menu.items.bg: flat                                   solid
-menu.items.bg.color:                                  #000000
-menu.items.text.color:                                #FFFFFF
-menu.items.active.bg:                                 flat border vertical gradient
-menu.items.active.bg.color:	                          #47B413
-menu.items.active.bg.colorTo:                         #31363B
-menu.items.active.text.color:                         #000000
-menu.items.active.disabled.text.color:                #DEDEDE
-menu.items.disabled.text.color:	                      #787878
-
 window.active.button.disabled.bg.border.color:	      #FFFFFF
 window.active.button.disabled.bg.color:               #555555
 window.active.button.disabled.bg.colorTo:             #555555

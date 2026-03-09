@@ -1,1 +1,3 @@
 set font "LigaMonaco Nerd Font 12"
+
+set guioptions ""

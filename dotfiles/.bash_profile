@@ -2,7 +2,15 @@
 # ~/.bash_profile
 #
 
-export QT_QPA_PLATFORMTHEME=qt6ct
-export XKB_DEFAULT_OPTIONS=ctrl:nocaps
+append_path () {
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="${PATH:+$PATH:}$1"
+    esac
+}
+
+append_path $HOME/.local/bin
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc

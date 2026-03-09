@@ -3,8 +3,8 @@
 ROOT="$(cd "$(dirname "$0")" || exit 1; pwd -P)"
 
 if ! sudo pacman --needed --noconfirm -Syu -< ./pkgs; then
-    exit 1
     echo "Aborted" >&2
+    exit 1
 fi
 
 exec_func() {

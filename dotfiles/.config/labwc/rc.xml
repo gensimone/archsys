@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<labwc_config>
+    <theme name="Adwaita-Labwc-dark">
+        <font name="LigaMonaco Nerd Font" size="12"/>
+    </theme>
+    <placement>
+        <policy>cascade</policy>
+        <cascadeOffset x="40" y="30"/>
+    </placement>
+    <!-- <windowSwitcher preview="no" outlines="no"> -->
+    <!--     <osd show="yes" style="thumbnail" output="all" allWorkspaces="yes" thumbnailLabelFormat="%T" /> -->
+    <!--     <fields> -->
+    <!--         <field content="icon" width="5%" /> -->
+    <!--         <field content="desktop_entry_name" width="30%" /> -->
+    <!--         <field content="title" width="65%" /> -->
+    <!--     </fields> -->
+    <!-- </windowSwitcher> -->
+    <!-- <resistance> -->
+    <!--     <screenEdgeStrength>20</screenEdgeStrength> -->
+    <!--     <windowEdgeStrength>20</windowEdgeStrength> -->
+    <!--     <unSnapThreshold>20</unSnapThreshold> -->
+    <!--     <unMaximizeThreshold>150</unMaximizeThreshold> -->
+    <!-- </resistance> -->
+    <resize>
+        <popupShow>Never</popupShow>
+        <drawContents>no</drawContents>
+        <minimumArea>8</minimumArea>
+    </resize>
+    <focus>
+        <followMouse>yes</followMouse>
+        <followMouseRequiresMovement>yes</followMouseRequiresMovement>
+        <raiseOnFocus>no</raiseOnFocus>
+    </focus>
+    <desktops number="4" />
+    <keyboard>
+        <default />
+        <keybind key="A-r"><action name="Execute" command="bash -c 'kill -s SIGHUP $(pidof labwc)'"/></keybind>
+        <keybind key="A-p"><action name="Execute" command="wmenu-run -f 'LigaMonaco Nerd Font 12' -N 000000 -n FFFFFF -S 47B413 -s 000000 -b"/></keybind>
+        <keybind key="A-q"><action name="Close" /></keybind>
+        <keybind key="A-f"><action name="ToggleMaximize" /></keybind>
+        <keybind key="A-1"><action name="GoToDesktop" to="1" /></keybind>
+        <keybind key="A-2"><action name="GoToDesktop" to="2" /></keybind>
+        <keybind key="A-3"><action name="GoToDesktop" to="3" /></keybind>
+        <keybind key="A-4"><action name="GoToDesktop" to="4" /></keybind>
+        <keybind key="A-Tab"><action name="NextWindow" /></keybind>
+    </keyboard>
+</labwc_config>

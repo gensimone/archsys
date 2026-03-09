@@ -1,0 +1,18 @@
+* {
+    font-family: "LigaMonaco Nerd Font";
+    font-size: 16px;
+}
+
+window#waybar {
+	border: 2px solid #FFFFFF;
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.modules-left {
+	margin-left: 10px;
+}
+
+.modules-right {
+	margin-right: 10px;
+}

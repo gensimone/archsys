@@ -1,0 +1,14 @@
+{
+  "layer": "bottom",
+  "position": "top",
+  "reload_style_on_change": true,
+  "mode": "dock",
+  "height": 36,
+  "width": 1350,
+  "margin": "8 8 8 8",
+  "spacing": 13,
+  "exclusive": false,
+  "modules-left": ["network"],
+  "modules-center": ["clock"],
+  "modules-right": ["tray"],
+}

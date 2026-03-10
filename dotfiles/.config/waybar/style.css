@@ -4,8 +4,8 @@
 }
 
 window#waybar {
-    background-color: #242424;
-    color: #FFFFFF;
+    background-color: #FFFFFF;
+    color: #000000;
 }
 
 .modules-left {

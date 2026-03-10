@@ -30,8 +30,8 @@ opt.expandtab = true
 opt.hlsearch = false
 opt.ignorecase = true
 opt.incsearch = true
-opt.number = true
-opt.relativenumber = true
+opt.number = false
+opt.relativenumber = false
 opt.laststatus = 0
 opt.scrolloff = 8
 opt.shiftwidth = 4
@@ -45,6 +45,7 @@ opt.updatetime = 300
 opt.wrap = false
 cmd("set noshowmode")
 cmd("set noshowcmd")
+cmd("set noruler")
 cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 diagnostic({ underline = false })
 

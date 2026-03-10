@@ -8,12 +8,12 @@
         <font name="LigaMonaco Nerd Font" size="12" />
         <titlebar layout=":" showTitle="yes"/>
     </theme>
-    <windowSwitcher preview="yes" outlines="no">
-        <osd show="yes" style="classic" output="all" thumbnailLabelFormat="%T" />
+    <windowSwitcher preview="yes" outlines="yes">
+        <osd show="yes" style="classic" output="focused" thumbnailLabelFormat="%T" />
         <fields>
             <field content="icon" width="0%" />
             <field content="desktop_entry_name" width="30%" />
-            <field content="title" width="65%" />
+            <field content="title" width="70%" />
         </fields>
     </windowSwitcher>
     <placement>
@@ -36,7 +36,7 @@
         <!-- various -->
         <keybind key="A-Return"><action name="Execute" command="foot" /></keybind>
         <keybind key="A-r"><action name="Execute" command="bash -c 'kill -s SIGHUP $(pidof labwc)'" /></keybind>
-        <keybind key="A-p"><action name="Execute" command="wmenu-run -f 'LigaMonaco Nerd Font 12' -N F4F5F6 -n 000000 -S BBBBBB -s 000000 -b" /></keybind>
+        <keybind key="A-p"><action name="Execute" command="wmenu-run -f 'LigaMonaco Nerd Font 12' -N F4F5F6 -n 000000 -S BBBBBB -s 000000" /></keybind>
         <keybind key="A-Escape"><action name="Execute" command="swaylock" /></keybind>
         <keybind key="A-q"><action name="Close" /></keybind>
         <keybind key="A-v"><action name="Iconify" /></keybind>

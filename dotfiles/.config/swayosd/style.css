@@ -1,13 +1,13 @@
 window#osd {
   border-radius: 0px;
   border: 1px solid #000000;
-  background: #f6f5f4;
+  background: #f6f4ef;
 }
 
 window#osd #container {
   margin: 6px;
   padding: 2px;
-  background: #f6f5f4;
+  background: #f6f4ef;
 }
 
 window#osd image {
@@ -35,7 +35,7 @@ window#osd trough {
   min-height: inherit;
   border-radius: 0px;
   border: none;
-  background: #f6f5f4;
+  background: #f6f4ef;
 }
 
 window#osd progress {

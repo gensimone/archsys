@@ -25,10 +25,10 @@ man-db
 man-pages
 mpv
 neovim
-network-manager-applet
 networkmanager
 newsboat
 nmap
+nwg-look
 pcmanfm
 pipewire
 pipewire-pulse
@@ -39,6 +39,7 @@ python-pipx
 qbittorrent
 qemu-img
 qemu-system-x86
+qt6ct
 ripgrep
 rustup
 sddm
@@ -53,7 +54,6 @@ unzip
 valgrind
 vim
 virt-manager
-waybar
 wget
 wireshark-qt
 wl-clipboard

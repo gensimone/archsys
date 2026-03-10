@@ -46,6 +46,7 @@ rustup
 sddm
 swaybg
 swayimg
+swaylock
 swayosd
 tmux
 tree
@@ -58,6 +59,7 @@ waybar
 wget
 wireshark-qt
 wl-clipboard
+wlopm
 wmenu
 xdg-desktop-portal-gtk
 xdg-desktop-portal-wlr

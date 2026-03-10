@@ -1,5 +1,5 @@
 # Set background color.
-swaybg -c 8B8B8B >/dev/null 2>&1 &
+swaybg -i ~/.config/labwc/wallpaper.png >/dev/null 2>&1 &
 
 # Launch a panel such as yambar or waybar.
 waybar >/dev/null 2>&1 &

@@ -22,10 +22,10 @@ mako >/dev/null 2>&1 &
 # (since a837fef). Instead use a wlr-output-power-management client such as
 # https://git.sr.ht/~leon_plickat/wlopm
 swayidle -w \
-        timeout 300 'swaylock -u -i ~/.config/labwc/wallpaper.png' \
+        timeout 300 'swaylock -c 000000' \
         timeout 600 'wlopm --off \*' \
         resume 'wlopm --on \*' \
-        before-sleep 'swaylock -u -i ~/.config/labwc/wallpaper.png' >/dev/null 2>&1 &
+        before-sleep 'swaylock -f -c 000000' >/dev/null 2>&1 &
 
 # Audio/Brightnessctl/Mic controls
 swayosd-server >/dev/null 2>&1 &

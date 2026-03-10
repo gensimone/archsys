@@ -18,7 +18,7 @@
     </windowSwitcher>
     <placement>
         <policy>cascade</policy>
-        <cascadeOffset x="40" y="30"/>
+        <cascadeOffset x="40" y="30" />
     </placement>
     <resize>
         <popupShow>Never</popupShow>
@@ -34,26 +34,32 @@
     <keyboard>
         <default />
         <!-- various -->
-        <keybind key="A-Return"><action name="Execute" command="foot"/></keybind>
-        <keybind key="A-r"><action name="Execute" command="bash -c 'kill -s SIGHUP $(pidof labwc)'"/></keybind>
-        <keybind key="A-p"><action name="Execute" command="wmenu-run -f 'LigaMonaco Nerd Font 12' -N F4F5F6 -n 000000 -S BBBBBB -s 000000 -b"/></keybind>
-        <keybind key="A-Escape"><action name="Execute" command="swaylock"/></keybind>
-        <keybind key="A-q"><action name="Close"/></keybind>
-        <keybind key="A-f"><action name="ToggleMaximize"/></keybind>
-        <keybind key="A-Tab"><action name="NextWindow"/></keybind>
-        <keybind key="A-S-Tab"><action name="PreviousWindow"/></keybind>
+        <keybind key="A-Return"><action name="Execute" command="foot" /></keybind>
+        <keybind key="A-r"><action name="Execute" command="bash -c 'kill -s SIGHUP $(pidof labwc)'" /></keybind>
+        <keybind key="A-p"><action name="Execute" command="wmenu-run -f 'LigaMonaco Nerd Font 12' -N F4F5F6 -n 000000 -S BBBBBB -s 000000 -b" /></keybind>
+        <keybind key="A-Escape"><action name="Execute" command="swaylock" /></keybind>
+        <keybind key="A-q"><action name="Close" /></keybind>
+        <keybind key="A-v"><action name="Iconify" /></keybind>
+        <keybind key="A-f"><action name="ToggleMaximize" /></keybind>
+        <keybind key="A-c"><action name="AutoPlace" policy="center" /></keybind>
+        <keybind key="A-Tab"><action name="NextWindow" /></keybind>
+        <keybind key="A-S-Tab"><action name="PreviousWindow" /></keybind>
 
         <!-- windows tailing -->
-        <keybind key="A-h"><action name="SnapToEdge" direction="left" combine="yes"/></keybind>
-        <keybind key="A-j"><action name="SnapToEdge" direction="down" combine="yes"/></keybind>
-        <keybind key="A-k"><action name="SnapToEdge" direction="up" combine="yes"/></keybind>
-        <keybind key="A-l"><action name="SnapToEdge" direction="right" combine="yes"/></keybind>
+        <keybind key="A-h"><action name="SnapToEdge" direction="left" combine="yes" /></keybind>
+        <keybind key="A-j"><action name="SnapToEdge" direction="down" combine="yes" /></keybind>
+        <keybind key="A-k"><action name="SnapToEdge" direction="up" combine="yes" /></keybind>
+        <keybind key="A-l"><action name="SnapToEdge" direction="right" combine="yes" /></keybind>
 
         <!-- workspaces -->
         <keybind key="A-1"><action name="GoToDesktop" to="1" /></keybind>
         <keybind key="A-2"><action name="GoToDesktop" to="2" /></keybind>
         <keybind key="A-3"><action name="GoToDesktop" to="3" /></keybind>
         <keybind key="A-4"><action name="GoToDesktop" to="4" /></keybind>
+        <keybind key="A-S-1"><action name="SendToDesktop" follow="yes" to="1" /></keybind>
+        <keybind key="A-S-2"><action name="SendToDesktop" follow="yes" to="2" /></keybind>
+        <keybind key="A-S-3"><action name="SendToDesktop" follow="yes" to="3" /></keybind>
+        <keybind key="A-S-4"><action name="SendToDesktop" follow="yes" to="4" /></keybind>
 
         <!-- audio -->
         <keybind key="A-u"><action name="Execute" command="swayosd-client --output-volume lower" /></keybind>
@@ -66,7 +72,7 @@
         <keybind key="XF86AudioMicMute"><action name="Execute" command="swayosd-client --input-volme mute-toggle" /></keybind>
 
         <!-- brightness -->
-        <keybind key="XF86MonBrightnessUp"><action name="Execute" command="swayosd-client --brightness +10"/></keybind>
-        <keybind key="XF86MonBrightnessDown"><action name="Execute" command="swayosd-client --brightness -10"/></keybind>
+        <keybind key="XF86MonBrightnessUp"><action name="Execute" command="swayosd-client --brightness +10" /></keybind>
+        <keybind key="XF86MonBrightnessDown"><action name="Execute" command="swayosd-client --brightness -10" /></keybind>
     </keyboard>
 </labwc_config>

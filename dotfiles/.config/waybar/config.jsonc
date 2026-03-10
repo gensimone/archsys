@@ -67,7 +67,10 @@
 
     // The 'tray' module.
     "tray": {
-        "spacing": 11
+        "spacing": 11,
+        "icons": {
+            "nm-applet": "connection.png"
+        }
     },
 
     // The 'battery' module.

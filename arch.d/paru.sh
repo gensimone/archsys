@@ -8,7 +8,7 @@ else
     if ! sudo pacman -S --needed base-devel; then
         echo "paru: Aborted" >&2
     else
-        if git clone https://aur.archlinux.org/paru.git "$PARU_PATH"; then
+        if git clone https://aur.archlinux.org/paru.git "$PARU_PATH" && rustup default stable; then
             cd paru
             makepkg -si
             rm -rfv $PARU_PATH

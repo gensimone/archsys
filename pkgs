@@ -1,6 +1,7 @@
 acpi
 adw-gtk-theme
 bash-completion
+bash-language-server
 batsignal
 bluetui
 bluez

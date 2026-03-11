@@ -1,3 +1,9 @@
+# Window properties
+set window-width        1400
+set window-height       800
+set adjust-open         "width"
+set database            "null"
+
 # Backgrounds
 set default-bg          "#f6f4ef"
 set statusbar-bg        "#ece8e1"

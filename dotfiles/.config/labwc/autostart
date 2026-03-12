@@ -1,5 +1,5 @@
 # Set background color.
-swaybg -c b3bfb3 >/dev/null 2>&1 &
+swaybg -i ~/.config/labwc/wallpaper.png >/dev/null 2>&1 &
 
 # Battery daemon that notify the user about battery states.
 batsignal -p >/dev/null 2>&1 &

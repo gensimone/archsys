@@ -1,0 +1,9 @@
+#!/bin/sh
+
+while true; do
+    battery=$(upower -b | grep percentage | awk '{print $2}')
+    date=$(date +'%a %b %d %H:%M')
+    wlp2s0=$(nmcli | grep wlp2s0 | head -1)
+    echo "$wlp2s0 | battery: $battery | $date"
+    sleep 60
+done

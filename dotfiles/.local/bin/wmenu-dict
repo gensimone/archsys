@@ -28,7 +28,7 @@ class ACTION(Enum):
 
 def exec_wmenu(input: str, args: list[str] = [], stdout=sp.PIPE) -> str:
     cp = sp.run(
-        [WMENU, "-f", "LigaMonaco Nerd Font 12", "-N", "ffffff", "-n", "000000", "-S", "b3bfb3", "-s", "000000"] + args,
+        [WMENU, "-f", "LigaMonaco Nerd Font 12", "-N", "000000", "-n", "ffffff"] + args,
         input=input.encode(),
         stdout=stdout
     )

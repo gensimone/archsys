@@ -2,5 +2,5 @@
 
 
 BOOKS="$(xdg-user-dir DOCUMENTS)/books"
-CHOOICE=$(find $BOOKS -exec basename {} \; | tail -n +2 | wmenu -f 'LigaMonaco Nerd Font 12' -N ffffff -n 000000 -S b3bfb3 -s 000000 -i -l 5)
+CHOOICE=$(find $BOOKS -exec basename {} \; | tail -n +2 | wmenu -f 'LigaMonaco Nerd Font 12' -N 000000 -n ffffff -i -l 5)
 [ -n "$CHOOICE" ] && zathura "$BOOKS/$CHOOICE"

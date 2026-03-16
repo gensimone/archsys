@@ -123,6 +123,7 @@ mode "resize" {
 }
 
 bar {
+    position top
     status_command ~/.config/sway/swaybar
 }
 

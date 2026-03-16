@@ -1,5 +1,5 @@
 indicator-radius=75
 color=000000
-font=LigaMonaco Nerd Font
+font=JetBrainsMono Nerd Font
 font-size=18
 daemonize

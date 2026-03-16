@@ -2,5 +2,5 @@ set window-width        1400
 set window-height       800
 set adjust-open         "width"
 set database            "null"
-set font "JetBrainsMono Nerd Font 12"
+set font "LigaMonaco Nerd Font 12"
 set guioptions ""

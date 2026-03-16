@@ -1,19 +1,20 @@
-# Variables
+# Some variables.
 set $mod Mod1
 set $left h
 set $down j
 set $up k
 set $right l
 set $term foot
-set $menu wmenu-run
+set $menu wmenu-run -i -f 'LigaMonaco Nerd Font 12' -N 000000 -n ffffff
+set $screenshot_cmd grim && notify-send "Screenshot taken."
 
 # Various settings
 floating_modifier $mod normal
 hide_edge_borders smart
 focus_follows_mouse no
-font pango:JetBrainsMono Nerd Font 12
+font pango:LigaMonaco Nerd Font 12
 
-#Hide window title bar
+# Hide window title bar.
 default_border pixel 1
 default_floating_border pixel 1
 for_window [class="^.*"] border pixel 1
@@ -31,38 +32,37 @@ exec swayidle -w \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock'
 
-# Input configuration
+# Touchpad configuration.
 input type:touchpad {
     dwt enabled
     tap disable
     natural_scroll enabled
     middle_emulation enabled
 }
+
+# Keyboard configuration.
 input type:keyboard {
     xkb_layout "eu"
     xkb_options "ctrl:nocaps"
 }
 
-# Keymaps
-bindsym $mod+b exec --no-startup-id wmenu-books
-bindsym $mod+t exec --no-startup-id wmenu-dict
-bindsym $mod+d exec --no-startup-id wmenu-kill
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
+# Various.
+bindsym $mod+q kill
+bindsym $mod+f fullscreen
+
+# Custom scripts / various programs.
+bindsym $mod+b exec wmenu-books
+bindsym $mod+t exec wmenu-dict
+bindsym $mod+d exec wmenu-kill
 bindsym $mod+Escape exec swaylock
 bindsym $mod+Return exec $term
-bindsym $mod+q kill
-bindsym $mod+p exec $menu -f 'JetBrainsMono Nerd Font 12' -N 000000 -n ffffff -i
+bindsym $mod+p exec $menu
+bindsym $mod+Shift+e exec swaynag -t warning -m '' -B 'Yes, exit sway' 'swaymsg exit'
+
+# Reload this config file.
 bindsym $mod+Shift+c reload
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+
+# Move windows around.
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
@@ -71,12 +71,27 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+# Change the focus.
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Layout controls.
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-bindsym $mod+f fullscreen
+
+# Floating windows.
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
+
+# Workspaces selection.
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
@@ -87,6 +102,8 @@ bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
+
+# Move windows around workspaces.
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
 bindsym $mod+Shift+3 move container to workspace number 3
@@ -97,6 +114,8 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
+
+# Input/Output audio.
 bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
 bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
@@ -105,9 +124,16 @@ bindsym --locked $mod+m exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
 bindsym --locked $mod+u exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
 bindsym --locked $mod+i exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
 bindsym --locked $mod+n exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+
+# Brightness controls.
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 10%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 10%+
-bindsym Print exec grim
+
+# Screenshots utility.
+bindsym Print exec $screenshot_cmd
+bindsym $mod+Shift+s exec $screenshot_cmd
+
+# Resize windows.
 bindsym $mod+r mode "resize"
 mode "resize" {
     bindsym $left resize shrink width 10px
@@ -122,9 +148,11 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
+# Statusbar.
 bar {
     position top
     status_command ~/.config/sway/swaybar
 }
 
+# Source system-wide sway drop-in files.
 include /etc/sway/config.d/*

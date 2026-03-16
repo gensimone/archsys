@@ -7,14 +7,12 @@ brightnessctl
 chromium
 clang
 cmus
-dnsmasq
 dosfstools
 fd
 foot
 fzf
 gcc
 gdb
-gimp
 git
 ifuse
 irssi
@@ -39,8 +37,6 @@ pyright
 python
 python-pip
 qbittorrent
-qemu-img
-qemu-system-x86
 ripgrep
 rsync
 rustup
@@ -56,9 +52,7 @@ tuned
 unzip
 valgrind
 vim
-virt-manager
 wget
-wireshark-qt
 wl-clipboard
 wlopm
 wmenu

@@ -5,7 +5,9 @@ set $down j
 set $up k
 set $right l
 set $term foot
-set $menu wmenu-run -i -f 'LigaMonaco Nerd Font 12' -N 000000 -n ffffff
+set $menu-args -i -f 'LigaMonaco Nerd Font 12' -N 000000 -n ffffff
+set $launcher wmenu-run $menu-args
+set $menu wmenu $menu-args
 set $screenshot_cmd grim && notify-send "Screenshot taken."
 
 # Various settings
@@ -23,14 +25,15 @@ for_window [class="^.*"] border pixel 1
 exec swaybg -i ~/wallpapers/*
 
 # Startup applications.
-exec batsignal -p
+exec wl-paste --watch cliphist store
 exec mako
-exec waybar
-exec sleep 2 && kanshi
 exec swayidle -w \
          timeout 300 'swaylock' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock'
+# Prevent multiple instances to be launched when reloading the config file.
+exec_always killall batsignal; batsignal -p
+exec_always killall kanshi; kanshi
 
 # Touchpad configuration.
 input type:touchpad {
@@ -51,12 +54,12 @@ bindsym $mod+q kill
 bindsym $mod+f fullscreen
 
 # Custom scripts / various programs.
-bindsym $mod+b exec wmenu-books
-bindsym $mod+t exec wmenu-dict
-bindsym $mod+d exec wmenu-kill
+bindsym $mod+b exec wmenu-books $menu-args
+bindsym $mod+t exec wmenu-dict $menu-args
+bindsym $mod+d exec wmenu-kill $menu-args
 bindsym $mod+Escape exec swaylock
 bindsym $mod+Return exec $term
-bindsym $mod+p exec $menu
+bindsym $mod+p exec $launcher
 bindsym $mod+Shift+e exec swaynag -t warning -m '' -B 'Yes, exit sway' 'swaymsg exit'
 
 # Reload this config file.
@@ -132,6 +135,9 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl set 10%+
 # Screenshots utility.
 bindsym Print exec $screenshot_cmd
 bindsym $mod+Shift+s exec $screenshot_cmd
+
+# Clipboard
+bindsym $mod+c exec wmenu-clipboard $menu-args
 
 # Resize windows.
 bindsym $mod+r mode "resize"

@@ -26,7 +26,7 @@ output * bg ~/wallpapers/lightning.jpg fill
 exec batsignal -p
 exec mako
 exec waybar
-exec kanshi
+exec sleep 2 && kanshi
 exec swayidle -w \
          timeout 300 'swaylock' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \

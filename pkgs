@@ -1,3 +1,4 @@
+adw-gtk-theme
 bash-completion
 bash-language-server
 batsignal
@@ -28,6 +29,7 @@ neovim
 networkmanager
 newsboat
 nmap
+nwg-look
 poetry
 polkit
 pulseaudio
@@ -37,6 +39,7 @@ pyright
 python
 python-pip
 qbittorrent
+qt6ct
 ripgrep
 rsync
 rustup

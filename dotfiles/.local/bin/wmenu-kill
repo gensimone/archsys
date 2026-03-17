@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CHOOICE=$(ps -e | tail -n +2 | awk '{print $1 " " $NF}' | wmenu -f 'JetBrainsMono Nerd Font 12' -N 000000 -n ffffff -i | cut -d ' ' -f 1)S
+CHOOICE=$(ps -e | tail -n +2 | awk '{print $1 " " $NF}' | wmenu -f 'LigaMonaco Nerd Font 12' -N 000000 -n ffffff -i | cut -d ' ' -f 1)S
 
 if [ -n "$CHOOICE" ]; then
 	kill $CHOOICE

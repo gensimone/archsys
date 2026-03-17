@@ -28,10 +28,10 @@ neovim
 networkmanager
 newsboat
 nmap
-pipewire
-pipewire-pulse
 poetry
 polkit
+pulseaudio
+pulseaudio-bluetooth
 pulsemixer
 pyright
 python

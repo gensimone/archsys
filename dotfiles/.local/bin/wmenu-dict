@@ -9,6 +9,7 @@ from enum import Enum
 
 WMENU= "wmenu"
 TRANS = "trans"
+WMENU_ARGS: list[str] = []
 
 
 class MODE(Enum):
@@ -28,7 +29,7 @@ class ACTION(Enum):
 
 def exec_wmenu(input: str, args: list[str] = [], stdout=sp.PIPE) -> str:
     cp = sp.run(
-        [WMENU, "-f", "LigaMonaco Nerd Font 12", "-N", "000000", "-n", "ffffff"] + args,
+        [WMENU] + WMENU_ARGS + args,
         input=input.encode(),
         stdout=stdout
     )
@@ -168,7 +169,7 @@ def check_deps(deps: list[str]) -> None:
             raise MissingDependency(d)
 
 
-def main() -> int:
+def main(args: list[str] = []) -> int:
     check_deps([WMENU, TRANS, "wl-paste", "wl-copy"])
 
     mode = get_user_mode()
@@ -210,4 +211,5 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    WMENU_ARGS = sys.argv[1:]
     sys.exit(main())

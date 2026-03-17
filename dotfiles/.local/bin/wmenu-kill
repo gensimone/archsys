@@ -1,7 +1,7 @@
 #!/bin/sh
 
-CHOOICE=$(ps -e | tail -n +2 | awk '{print $1 " " $NF}' | wmenu -f 'LigaMonaco Nerd Font 12' -N 000000 -n ffffff -i | cut -d ' ' -f 1)S
+selected=$(ps -e | tail -n +2 | awk '{print $1 " " $NF}' | wmenu "$@" -l 5 | cut -d ' ' -f 1)
 
-if [ -n "$CHOOICE" ]; then
-	kill $CHOOICE
+if [ -n "$selected" ]; then
+	kill $selected
 fi

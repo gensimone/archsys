@@ -45,6 +45,7 @@ rsync
 rustup
 sddm
 sway
+swaybg
 swayimg
 swaylock
 tmux

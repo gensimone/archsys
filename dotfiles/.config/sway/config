@@ -27,13 +27,12 @@ exec swaybg -i ~/wallpapers/*
 # Startup applications.
 exec wl-paste --watch cliphist store
 exec mako
+exec batsignal -p
+exec kanshi
 exec swayidle -w \
          timeout 300 'swaylock' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock'
-# Prevent multiple instances to be launched when reloading the config file.
-exec_always killall batsignal; batsignal -p
-exec_always killall kanshi; kanshi
 
 # Touchpad configuration.
 input type:touchpad {
@@ -138,6 +137,10 @@ bindsym $mod+Shift+s exec $screenshot_cmd
 
 # Clipboard
 bindsym $mod+c exec wmenu-clipboard $menu-args
+
+# Scratchpads
+for_window [app_id="pulsemixer"] move absolute position center, resize set 300 300, move scratchpad
+bindsym $mod+a exec pgrep pulsemixer || foot --app-id=pulsemixer pulsemixer; [app_id="pulsemixer"] scratchpad show
 
 # Resize windows.
 bindsym $mod+r mode "resize"

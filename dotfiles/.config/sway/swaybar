@@ -1,9 +1,22 @@
 #!/bin/sh
 
 while true; do
+    # Sink
+    # default_sink=$(pactl get-default-sink)
+    # default_muted=$(pactl get-sink-mute $default_sink)
+    # default_volume=$(pactl get-sink-volume $default_sink | awk '{print $5}')
+    # sink="$default_sink: [$default_muted], [$default_volume]"
+
+    # Battery
     battery=$(upower -b | grep percentage | awk '{print $2}')
-    date=$(date +'%a %b %d %H:%M')
+
+    # Date and time
+    date=$(date +'%a %b %d %H:%M:%S')
+
+    # Network
     wlp2s0=$(nmcli | grep wlp2s0 | head -1)
+
     echo "$wlp2s0 | battery: $battery | $date"
-    sleep 60
+
+    sleep 1
 done

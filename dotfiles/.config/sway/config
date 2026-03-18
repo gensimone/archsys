@@ -5,12 +5,12 @@ set $down j
 set $up k
 set $right l
 set $term foot
-set $menu-args -i -f 'LigaMonaco Nerd Font 12' -N 000000 -n ffffff
+set $menu-args -i -f 'LigaMonaco Nerd Font 12' -N 000000 -n ffffff -b
 set $launcher wmenu-run $menu-args
 set $menu wmenu $menu-args
 set $screenshot_cmd grim && notify-send "Screenshot taken."
 
-# Various settings
+# Various settings.
 floating_modifier $mod normal
 hide_edge_borders smart
 focus_follows_mouse no
@@ -21,15 +21,13 @@ default_border pixel 1
 default_floating_border pixel 1
 for_window [class="^.*"] border pixel 1
 
-# Set the wallpaper
-exec swaybg -i ~/wallpapers/*
-
 # Startup applications.
 exec wl-paste --watch cliphist store
+exec swaybg -i ~/wallpapers/*
+exec pgrep batsignal || batsignal -p
 exec mako
 exec lxsession
-exec batsignal -p
-exec kanshi
+exec_always killall kanshi; kanshi
 exec swayidle -w \
          timeout 300 'swaylock' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
@@ -53,11 +51,12 @@ input type:keyboard {
 bindsym $mod+q kill
 bindsym $mod+f fullscreen
 
-# Scritps (wmenu)
+# Scritps (wmenu).
 bindsym $mod+b exec wmenu-books $menu-args
 bindsym $mod+d exec wmenu-dict $menu-args
 bindsym $mod+k exec wmenu-kill $menu-args
 bindsym $mod+c exec wmenu-clipboard $menu-args
+bindsym $mod+Shift+r exec wmenu-rfc $menu-args
 
 # Essential keymaps.
 bindsym $mod+Escape exec swaylock
@@ -154,22 +153,22 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-# Pulsemixer
+# Pulsemixer.
 exec foot --app-id=pulsemixer pulsemixer
 for_window [app_id="pulsemixer"] move scratchpad
 bindsym $mod+Shift+a exec foot --app-id=pulsemixer pulsemixer
 bindsym $mod+a [app_id="pulsemixer"] scratchpad show; move position center
 
-# Dropdown terminal
-exec foot --app-id=dropdown
+# Dropdown terminal.
+exec foot --app-id=dropdown --override=initial-window-size-pixels=1200x750
 for_window [app_id="dropdown"] move scratchpad
-bindsym $mod+Shift+t exec foot --app-id=dropdown
+bindsym $mod+Shift+t exec foot --app-id=dropdown --override=initial-window-size-pixels=1200x750
 bindsym $mod+t [app_id="dropdown"] scratchpad show; move position center
 
 # Statusbar.
 bar {
     position top
-    status_command ~/.config/sway/swaybar
+    status_command ~/.config/sway/bar
 }
 
 # Source system-wide sway drop-in files.

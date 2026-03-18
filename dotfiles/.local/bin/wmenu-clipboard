@@ -2,6 +2,7 @@
 
 lines=$(cliphist list | wc -l)
 limit=5
+
 if [ $lines -gt $limit ]; then
     lines=$limit
 fi

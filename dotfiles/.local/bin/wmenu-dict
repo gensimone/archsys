@@ -48,6 +48,7 @@ def get_user_mode() -> MODE | None:
         return None
     return MODE(mode)
 
+
 def get_user_msg(optional_input: list[str] = []) -> str:
     return exec_wmenu(input="\n".join(optional_input), args=["-p", "Type:"]).strip()
 

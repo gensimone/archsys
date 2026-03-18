@@ -1,5 +1,8 @@
 #!/bin/sh
 
-books="$(xdg-user-dir DOCUMENTS)/books"
+books="$HOME/documents/books"
+
+# tail -n +2 discard the first element of the list.
 selected=$(find $books -exec basename {} \; | tail -n +2 | wmenu "$@" -l 5)
+
 [ -n "$selected" ] && zathura "$books/$selected"

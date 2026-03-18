@@ -53,10 +53,13 @@ input type:keyboard {
 bindsym $mod+q kill
 bindsym $mod+f fullscreen
 
-# Custom scripts / various programs.
+# Scritps (wmenu)
 bindsym $mod+b exec wmenu-books $menu-args
-bindsym $mod+t exec wmenu-dict $menu-args
-bindsym $mod+d exec wmenu-kill $menu-args
+bindsym $mod+d exec wmenu-dict $menu-args
+bindsym $mod+k exec wmenu-kill $menu-args
+bindsym $mod+c exec wmenu-clipboard $menu-args
+
+# Essential keymaps.
 bindsym $mod+Escape exec swaylock
 bindsym $mod+Return exec $term
 bindsym $mod+p exec $launcher
@@ -78,7 +81,7 @@ bindsym $mod+Shift+Right move right
 # Change the focus.
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
-bindsym $mod+$up focus up
+# bindsym $mod+$up focus up
 bindsym $mod+$right focus right
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -136,13 +139,6 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl set 10%+
 bindsym Print exec $screenshot_cmd
 bindsym $mod+Shift+s exec $screenshot_cmd
 
-# Clipboard
-bindsym $mod+c exec wmenu-clipboard $menu-args
-
-# Scratchpads
-for_window [app_id="pulsemixer"] move absolute position center, resize set 300 300, move scratchpad
-bindsym $mod+a exec pgrep pulsemixer || foot --app-id=pulsemixer pulsemixer; [app_id="pulsemixer"] scratchpad show
-
 # Resize windows.
 bindsym $mod+r mode "resize"
 mode "resize" {
@@ -157,6 +153,18 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+# Pulsemixer
+exec foot --app-id=pulsemixer pulsemixer
+for_window [app_id="pulsemixer"] move scratchpad
+bindsym $mod+Shift+a exec foot --app-id=pulsemixer pulsemixer
+bindsym $mod+a [app_id="pulsemixer"] scratchpad show; move position center
+
+# Dropdown terminal
+exec foot --app-id=dropdown
+for_window [app_id="dropdown"] move scratchpad
+bindsym $mod+Shift+t exec foot --app-id=dropdown
+bindsym $mod+t [app_id="dropdown"] scratchpad show; move position center
 
 # Statusbar.
 bar {

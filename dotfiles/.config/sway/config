@@ -27,6 +27,7 @@ exec swaybg -i ~/wallpapers/*
 # Startup applications.
 exec wl-paste --watch cliphist store
 exec mako
+exec lxsession
 exec batsignal -p
 exec kanshi
 exec swayidle -w \

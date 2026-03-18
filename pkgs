@@ -48,6 +48,7 @@ rustup
 sddm
 sway
 swaybg
+swayidle
 swayimg
 swaylock
 tmux

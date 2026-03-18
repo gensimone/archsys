@@ -27,6 +27,8 @@ exec swaybg -i ~/wallpapers/*
 exec pgrep batsignal || batsignal -p
 exec mako
 exec lxsession
+exec foot --app-id=pulsemixer pulsemixer
+exec foot --app-id=dropdown --override=initial-window-size-pixels=1200x750
 exec_always killall kanshi; kanshi
 exec swayidle -w \
          timeout 300 'swaylock' \
@@ -138,6 +140,12 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl set 10%+
 bindsym Print exec $screenshot_cmd
 bindsym $mod+Shift+s exec $screenshot_cmd
 
+# Scratchpads
+bindsym $mod+Shift+a exec foot --app-id=pulsemixer pulsemixer
+bindsym $mod+a [app_id="pulsemixer"] scratchpad show; move position center
+bindsym $mod+Shift+t exec foot --app-id=dropdown --override=initial-window-size-pixels=1200x750
+bindsym $mod+t [app_id="dropdown"] scratchpad show; move position center
+
 # Resize windows.
 bindsym $mod+r mode "resize"
 mode "resize" {
@@ -153,17 +161,10 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-# Pulsemixer.
-exec foot --app-id=pulsemixer pulsemixer
+# Rules
 for_window [app_id="pulsemixer"] move scratchpad
-bindsym $mod+Shift+a exec foot --app-id=pulsemixer pulsemixer
-bindsym $mod+a [app_id="pulsemixer"] scratchpad show; move position center
-
-# Dropdown terminal.
-exec foot --app-id=dropdown --override=initial-window-size-pixels=1200x750
 for_window [app_id="dropdown"] move scratchpad
-bindsym $mod+Shift+t exec foot --app-id=dropdown --override=initial-window-size-pixels=1200x750
-bindsym $mod+t [app_id="dropdown"] scratchpad show; move position center
+for_window [app_id="org.pwmt.zathura"] floating enable
 
 # Statusbar.
 bar {

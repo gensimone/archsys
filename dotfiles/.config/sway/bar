@@ -15,8 +15,9 @@ while true; do
 
     # Network
     wlp2s0=$(nmcli | grep wlp2s0 | head -1)
+    eno1=$(nmcli | grep eno1 | head -1)
 
-    echo "$wlp2s0 | battery: $battery | $date"
+    echo "$eno1 | $wlp2s0 | battery: $battery | $date"
 
     sleep 1
 done

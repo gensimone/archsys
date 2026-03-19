@@ -5,7 +5,7 @@ set $down j
 set $up k
 set $right l
 set $term foot
-set $menu-args -i -f 'LigaMonaco Nerd Font 12' -N 000000 -n ffffff -b
+set $menu-args -i -f 'LigaMonaco Nerd Font 12' -N 000000 -n ffffff
 set $launcher wmenu-run $menu-args
 set $menu wmenu $menu-args
 set $screenshot_cmd grim && notify-send "Screenshot taken."
@@ -23,16 +23,16 @@ for_window [class="^.*"] border pixel 1
 
 # Startup applications.
 exec wl-paste --watch cliphist store
-exec swaybg -i ~/wallpapers/*
+exec swaybg -c bbbbbb
 exec pgrep batsignal || batsignal -p
 exec mako
 exec lxsession
 exec foot --app-id=pulsemixer pulsemixer
 exec foot --app-id=dropdown --override=initial-window-size-pixels=1200x750
-exec_always killall kanshi; kanshi
+exec_always kanshi
 exec swayidle -w \
          timeout 300 'swaylock' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 300 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock'
 
 # Touchpad configuration.
@@ -168,7 +168,7 @@ for_window [app_id="org.pwmt.zathura"] floating enable
 
 # Statusbar.
 bar {
-    position top
+    position bottom
     status_command ~/.config/sway/bar
 }
 

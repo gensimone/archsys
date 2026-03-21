@@ -5,19 +5,23 @@ while true; do
     # default_sink=$(pactl get-default-sink)
     # default_muted=$(pactl get-sink-mute $default_sink)
     # default_volume=$(pactl get-sink-volume $default_sink | awk '{print $5}')
-    # sink="$default_sink: [$default_muted], [$default_volume]"
+    # sink="sink: [$default_muted], [$default_volume]"
 
     # Battery
-    battery=$(upower -b | grep percentage | awk '{print $2}')
+    if upower -b >/dev/null; then
+        battery="battery: $(upower -b | grep percentage | awk '{print $2}')"
+    fi
 
     # Date and time
     date=$(date +'%a %b %d %H:%M:%S')
 
     # Network
-    wlp2s0=$(nmcli | grep wlp2s0 | head -1)
-    eno1=$(nmcli | grep eno1 | head -1)
+    network=
+    for ndev in $(ip -br a | tail +2 | awk '{print $1}'); do
+        network="$network | $(nmcli | grep $ndev | head -1)"
+    done
 
-    echo "$eno1 | $wlp2s0 | battery: $battery | $date"
+    echo "$network | $sink | $battery | $date"
 
     sleep 1
 done

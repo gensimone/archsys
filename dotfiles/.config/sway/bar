@@ -8,12 +8,13 @@ while true; do
     # sink="sink: [$default_muted], [$default_volume]"
 
     # Battery
-    if upower -b >/dev/null; then
-        battery="battery: $(upower -b | grep percentage | awk '{print $2}')"
+    battery="$(upower -b | grep percentage | awk '{print $2}')"
+    if ! [ -z "$battery" ]; then
+        battery="| battery: $battery"
     fi
 
     # Date and time
-    date=$(date +'%a %b %d %H:%M:%S')
+    date="| $(date +'%a %b %d %H:%M:%S')"
 
     # Network
     network=
@@ -21,7 +22,7 @@ while true; do
         network="$network | $(nmcli | grep $ndev | head -1)"
     done
 
-    echo "$network | $sink | $battery | $date"
+    echo "$network $date $battery"
 
     sleep 1
 done

@@ -1,7 +1,6 @@
 adw-gtk-theme
 bash-completion
 bash-language-server
-batsignal
 bluetui
 bluez
 brightnessctl
@@ -18,7 +17,6 @@ gdb
 git
 ifuse
 irssi
-kanshi
 libmad
 libnotify
 lxsession

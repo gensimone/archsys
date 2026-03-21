@@ -33,7 +33,6 @@ newsboat
 nmap
 nwg-look
 openssh
-poetry
 polkit
 pulseaudio
 pulseaudio-bluetooth
@@ -42,6 +41,7 @@ pyright
 python
 python-pip
 python-pipx
+python-poetry
 qbittorrent
 qt6ct
 rfc

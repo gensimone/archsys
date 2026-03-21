@@ -23,7 +23,7 @@ for_window [class="^.*"] border pixel 1
 
 # Startup applications.
 exec wl-paste --watch cliphist store
-exec swaybg -c bbbbbb
+exec swaybg -i ~/wallpapers/dark-pen.jpg
 exec pgrep batsignal || batsignal -p
 exec mako
 exec lxsession
@@ -52,13 +52,14 @@ input type:keyboard {
 # Various.
 bindsym $mod+q kill
 bindsym $mod+f fullscreen
+bindsym $mod+Shift+c exec cliphist wipe
 
 # Scritps (wmenu).
 bindsym $mod+b exec wmenu-books $menu-args
 bindsym $mod+d exec wmenu-dict $menu-args
 bindsym $mod+k exec wmenu-kill $menu-args
 bindsym $mod+c exec wmenu-clipboard $menu-args
-bindsym $mod+Shift+r exec wmenu-rfc $menu-args
+bindsym $mod+r exec wmenu-rfc $menu-args
 
 # Essential keymaps.
 bindsym $mod+Escape exec swaylock
@@ -67,7 +68,7 @@ bindsym $mod+p exec $launcher
 bindsym $mod+Shift+e exec swaynag -t warning -m '' -B 'Yes, exit sway' 'swaymsg exit'
 
 # Reload this config file.
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r reload
 
 # Move windows around.
 bindsym $mod+Shift+$left move left
@@ -147,19 +148,14 @@ bindsym $mod+Shift+t exec foot --app-id=dropdown --override=initial-window-size-
 bindsym $mod+t [app_id="dropdown"] scratchpad show; move position center
 
 # Resize windows.
-bindsym $mod+r mode "resize"
-mode "resize" {
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+bindsym $mod+Ctrl+$left resize shrink width 20px
+bindsym $mod+Ctrl+$down resize grow height 20px
+bindsym $mod+Ctrl+$up resize shrink height 20px
+bindsym $mod+Ctrl+$right resize grow width 20px
+bindsym $mod+Ctrl+Left resize shrink width 20px
+bindsym $mod+Ctrl+Down resize grow height 20px
+bindsym $mod+Ctrl+Up resize shrink height 20px
+bindsym $mod+Ctrl+Right resize grow width 20px
 
 # Rules
 for_window [app_id="pulsemixer"] move scratchpad

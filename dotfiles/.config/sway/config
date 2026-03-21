@@ -17,9 +17,9 @@ focus_follows_mouse no
 font pango:LigaMonaco Nerd Font 12
 
 # Hide window title bar.
-default_border pixel 1
+default_border pixel 3
 default_floating_border pixel 1
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 3
 
 # Startup applications.
 exec wl-paste --watch cliphist store
@@ -164,6 +164,9 @@ for_window [app_id="org.pwmt.zathura"] floating enable
 bar {
     position bottom
     status_command ~/.config/sway/bar
+    colors {
+        background #222222
+    }
 }
 
 # Source system-wide sway drop-in files.

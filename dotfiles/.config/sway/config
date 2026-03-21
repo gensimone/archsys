@@ -5,7 +5,7 @@ set $down j
 set $up k
 set $right l
 set $term foot
-set $menu-args -i -f 'LigaMonaco Nerd Font 12' -N 000000 -n ffffff
+set $menu-args -i -f 'LigaMonaco Nerd Font 12' -N 222222 -n bbbbbb
 set $launcher wmenu-run $menu-args
 set $menu wmenu $menu-args
 set $screenshot_cmd grim && notify-send "Screenshot taken."

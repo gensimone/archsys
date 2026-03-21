@@ -1,29 +1,31 @@
 #!/bin/sh
 
-# This looks crap, I know.
+pkgs=$(cat $HOME/codes/archsys/pkgs)
 
-host_pkgs_path=/tmp/pkgs
-repo_pkgs_path=$HOME/codes/archsys/pkgs
+pkgs_to_exclude="
+    base           \
+    efibootmgr     \
+    intel-ucode    \
+    linux-firmware \
+    linux-lts      \
+    sof-firmware   \
+    sudo           \
+    wpa_supplicant \
+    zram-generator"
 
-pacman -Qei | grep Name | awk '{print $3}' > $host_pkgs_path
+echo "Installed:"
+installed_pkgs=$(pacman -Qei | grep Name | awk '{print $3}')
+for pkg in $installed_pkgs; do
+    if [[ "$pkgs_to_exclude" != *"$pkg"* ]] && [[ "$pkgs" != *"$pkg"* ]]; then
+        echo "  $pkg"
+    fi
+done
 
-partial_pkgs_path=/tmp/partial_pkgs
-grep -vxf $repo_pkgs_path $host_pkgs_path > $partial_pkgs_path
+echo
 
-# The following packages must be deleted from partial_result:
-# FIXME
-pkgs_to_ignore_path=/tmp/pkgs_to_ignore
-cat <<EOF | sudo tee $pkgs_to_ignore_path 1>/dev/null
-base
-efibootmgr
-intel-ucode
-linux-firmware
-linux-lts
-sof-firmware
-sof-firmware
-sudo
-wpa_supplicant
-zram-generator
-EOF
-
-grep -vxf $pkgs_to_ignore_path $partial_pkgs_path
+echo "Removed:"
+for pkg in $pkgs; do
+    if [[ "$installed_pkgs" != *"$pkg"* ]]; then
+        echo "  $pkg"
+    fi
+done

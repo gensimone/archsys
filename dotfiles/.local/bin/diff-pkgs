@@ -13,19 +13,31 @@ pkgs_to_exclude="
     wpa_supplicant \
     zram-generator"
 
-echo "Installed:"
+# Installed packages.
 installed_pkgs=$(pacman -Qei | grep Name | awk '{print $3}')
+diff_installed_pkgs=
 for pkg in $installed_pkgs; do
     if [[ "$pkgs_to_exclude" != *"$pkg"* ]] && [[ "$pkgs" != *"$pkg"* ]]; then
-        echo "  $pkg"
+        diff_installed_pkgs="$diff_installed_pkgs $pkg"
     fi
 done
+if [ -n "$diff_installed_pkgs" ]; then
+    echo "Installed:"
+    for pkg in $diff_installed_pkgs; do
+        echo "  $pkg"
+    done
+fi
 
-echo
-
-echo "Removed:"
+# Removed packages.
+diff_removed_pkgs=
 for pkg in $pkgs; do
     if [[ "$installed_pkgs" != *"$pkg"* ]]; then
-        echo "  $pkg"
+        diff_removed_pkgs="$diff_removed_pkgs $pkg"
     fi
 done
+if [ -n "$diff_removed_pkgs" ]; then
+    echo "Removed:"
+    for pkg in $diff_removed_pkgs; do
+        echo "  $pkg"
+    done
+fi

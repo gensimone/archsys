@@ -20,10 +20,10 @@ while true; do
     # Network
     network=
     for ndev in $(ip -br a | tail +2 | awk '{print $1}'); do
-        network="$sink$network | $(nmcli | grep $ndev | head -1)"
+        network="$network | $(nmcli | grep $ndev | head -1)"
     done
 
-    echo "$network $date $battery"
+    echo "$sink$network $date $battery"
 
     sleep 1
 done

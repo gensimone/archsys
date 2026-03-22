@@ -54,7 +54,6 @@ bindsym $mod+Shift+c exec cliphist wipe
 
 # Scritps (wmenu).
 bindsym $mod+b exec wmenu-books $menu-args
-bindsym $mod+d exec wmenu-dict $menu-args
 bindsym $mod+k exec wmenu-kill $menu-args
 bindsym $mod+c exec wmenu-clipboard $menu-args
 bindsym $mod+r exec wmenu-rfc $menu-args

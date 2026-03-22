@@ -1,1 +1,3 @@
 alias remove-orphans='pacman -Qdtq >/dev/null && sudo pacman -Rns $(pacman -Qdtq) || echo "Nothing to do.."'
+alias dict='trans :it -d -i'
+alias tran='trans :it -b -i'

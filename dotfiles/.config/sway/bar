@@ -5,7 +5,8 @@ while true; do
     default_sink=$(pactl get-default-sink)
     default_muted=$(pactl get-sink-mute $default_sink)
     default_volume=$(pactl get-sink-volume $default_sink | awk '{print $5}')
-    sink="sink: [$default_muted], [$default_volume]"
+    default_name=$(pulsemixer --list-sinks | grep Default | cut -d ',' -f 2 | awk '{print $2}')
+    sink="$default_name: [$default_muted], [$default_volume]"
 
     # Battery
     battery="$(upower -b | grep percentage | awk '{print $2}')"

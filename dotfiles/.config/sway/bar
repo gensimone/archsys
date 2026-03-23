@@ -1,5 +1,6 @@
 #!/bin/sh
 
+DELIMITER="|"
 
 while true; do
 
@@ -37,7 +38,7 @@ while true; do
             # Prevent an extra whitespace at the
             # beginning of the bar.
             if [ -n "$bar" ]; then
-                bar="$bar | $mod"
+                bar="$bar $DELIMITER $mod"
             else
                 bar="$mod"
             fi

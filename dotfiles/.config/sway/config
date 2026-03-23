@@ -5,7 +5,7 @@ set $down j
 set $up k
 set $right l
 set $term foot
-set $menu-args -i -f 'LigaMonaco Nerd Font 12' -N 222222 -n bbbbbb
+set $menu-args -i -f 'JetBrainsMono Nerd Font 12' -N 000000 -n ffffff
 set $launcher wmenu-run $menu-args
 set $menu wmenu $menu-args
 set $screenshot_cmd grim && notify-send "Screenshot taken."
@@ -14,7 +14,7 @@ set $screenshot_cmd grim && notify-send "Screenshot taken."
 floating_modifier $mod normal
 hide_edge_borders smart
 focus_follows_mouse no
-font pango:LigaMonaco Nerd Font 12
+font pango:JetBrainsMono Nerd Font 12
 
 # Hide window title bar.
 default_border pixel 3
@@ -164,7 +164,7 @@ bar {
     position bottom
     status_command ~/.config/sway/bar
     colors {
-        background #222222
+        background #000000
     }
 }
 

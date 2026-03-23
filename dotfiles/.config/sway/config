@@ -158,6 +158,7 @@ bindsym $mod+Ctrl+Right resize grow width 20px
 for_window [app_id="pulsemixer"] move scratchpad
 for_window [app_id="dropdown"] move scratchpad
 for_window [app_id="org.pwmt.zathura"] floating enable
+for_window [app_id="rfc"] floating enable
 
 # Statusbar.
 bar {

@@ -1,6 +1,10 @@
 #!/bin/sh
 
+DELIMITER="|"
+
 while true; do
+    # TODO: Input
+
     # Sink
     default_sink=$(pactl get-default-sink)
     default_muted=$(pactl get-sink-mute $default_sink)
@@ -11,19 +15,30 @@ while true; do
     # Battery
     battery="$(upower -b | grep percentage | awk '{print $2}')"
     if ! [ -z "$battery" ]; then
-        battery="| battery: $battery"
+        battery="battery: $battery"
     fi
 
     # Date and time
-    date="| $(date +'%a %b %d %H:%M:%S')"
+    date="$(date +'%a %b %d %H:%M:%S')"
 
     # Network
     network=
     for ndev in $(ip -br a | tail +2 | awk '{print $1}'); do
-        network="$network | $(nmcli | grep $ndev | head -1)"
+        ndev_data="$(nmcli | grep $ndev | head -1)"
+        if [ -z "$network" ]; then
+            network="$ndev_data"
+        else
+            network="$network $DELIMITER $ndev_data"
+        fi
     done
 
-    echo "$sink$network $date $battery"
+    echo $sink      \
+         $DELIMITER \
+         $network   \
+         $DELIMITER \
+         $battery   \
+         $DELIMITER \
+         $date
 
     sleep 1
 done

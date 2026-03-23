@@ -1,27 +1,25 @@
 #!/bin/sh
 
-DELIMITER="|"
 
 while true; do
-    # TODO: Input
 
-    # Sink
+    # Sink.
     default_sink=$(pactl get-default-sink)
     default_muted=$(pactl get-sink-mute $default_sink)
     default_volume=$(pactl get-sink-volume $default_sink | awk '{print $5}')
     default_name=$(pulsemixer --list-sinks | grep Default | cut -d ',' -f 2 | awk '{print $2}')
     sink="$default_name: [$default_muted], [$default_volume]"
 
-    # Battery
+    # Battery.
     battery="$(upower -b | grep percentage | awk '{print $2}')"
-    if ! [ -z "$battery" ]; then
+    if [ -n "$battery" ]; then
         battery="battery: $battery"
     fi
 
-    # Date and time
+    # Date and time.
     date="$(date +'%a %b %d %H:%M:%S')"
 
-    # Network
+    # Network.
     network=
     for ndev in $(ip -br a | tail +2 | awk '{print $1}'); do
         ndev_data="$(nmcli | grep $ndev | head -1)"
@@ -32,13 +30,21 @@ while true; do
         fi
     done
 
-    echo $sink      \
-         $DELIMITER \
-         $network   \
-         $DELIMITER \
-         $battery   \
-         $DELIMITER \
-         $date
+    # Format the bar.
+    bar=""
+    for mod in "$sink" "$network" "$battery" "$date"; do
+        if [ -n "$mod" ]; then
+            # Prevent an extra whitespace at the
+            # beginning of the bar.
+            if [ -n "$bar" ]; then
+                bar="$bar | $mod"
+            else
+                bar="$mod"
+            fi
+        fi
+    done
+
+    echo "$bar"
 
     sleep 1
 done

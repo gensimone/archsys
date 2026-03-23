@@ -1,8 +1,8 @@
 #!/bin/sh
 
-rfc="/usr/share/doc/rfc/pdf"
+rfc="/usr/share/doc/rfc/txt"
 
 # tail -n +2 discard the first element of the list.
-selected=$(find $rfc -exec basename {} \; | tail -n +2 | wmenu "$@" -l 5)
+selected=$(ls $rfc | tail -n +2 | wmenu "$@" -l 5)
 
-[ -n "$selected" ] && zathura "$rfc/$selected"
+[ -n "$selected" ] && foot --app-id=rfc less $rfc/$selected

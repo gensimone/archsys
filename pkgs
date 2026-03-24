@@ -1,5 +1,4 @@
 adw-gtk-theme
-test
 bash-completion
 bash-language-server
 bluetui
@@ -53,10 +52,10 @@ swayidle
 swayimg
 swaylock
 syncthing
+test
 tmux
 translate-shell
 tree
-ttf-jetbrains-mono-nerd
 tuned
 unzip
 upower

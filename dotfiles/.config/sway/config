@@ -17,13 +17,13 @@ focus_follows_mouse no
 font pango:Adwaita Mono 12
 
 # Hide window title bar.
-default_border pixel 3
-default_floating_border pixel 1
-for_window [class="^.*"] border pixel 3
+# default_border pixel 3
+# default_floating_border pixel 1
+# for_window [class="^.*"] border pixel 3
 
 # Startup applications.
 exec wl-paste --watch cliphist store
-exec swaybg -i ~/wallpapers/dark-pen.jpg
+exec swaybg -i ~/wallpapers/lightning.jpg
 exec mako
 exec lxsession
 exec foot --app-id=pulsemixer pulsemixer

@@ -29,8 +29,8 @@ exec lxsession
 exec foot --app-id=pulsemixer pulsemixer
 exec foot --app-id=dropdown --override=initial-window-size-pixels=1200x750
 exec swayidle -w \
-         timeout 300 'swaylock' \
-         timeout 300 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 600 'swaylock' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock'
 
 # Touchpad configuration.
@@ -54,7 +54,7 @@ bindsym $mod+Shift+c exec cliphist wipe
 
 # Scritps (wmenu).
 bindsym $mod+b exec wmenu-books $menu-args
-bindsym $mod+k exec wmenu-kill $menu-args
+bindsym $mod+d exec wmenu-kill $menu-args
 bindsym $mod+c exec wmenu-clipboard $menu-args
 bindsym $mod+r exec wmenu-rfc $menu-args
 
@@ -80,7 +80,7 @@ bindsym $mod+Shift+Right move right
 # Change the focus.
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
-# bindsym $mod+$up focus up
+bindsym $mod+$up focus up
 bindsym $mod+$right focus right
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -138,7 +138,7 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl set 10%+
 bindsym Print exec $screenshot_cmd
 bindsym $mod+Shift+s exec $screenshot_cmd
 
-# Scratchpads
+# Scratchpads.
 bindsym $mod+Shift+a exec foot --app-id=pulsemixer pulsemixer
 bindsym $mod+a [app_id="pulsemixer"] scratchpad show; move position center
 bindsym $mod+Shift+t exec foot --app-id=dropdown --override=initial-window-size-pixels=1200x750
@@ -154,7 +154,7 @@ bindsym $mod+Ctrl+Down resize grow height 20px
 bindsym $mod+Ctrl+Up resize shrink height 20px
 bindsym $mod+Ctrl+Right resize grow width 20px
 
-# Rules
+# Rules.
 for_window [app_id="pulsemixer"] move scratchpad
 for_window [app_id="dropdown"] move scratchpad
 for_window [app_id="org.pwmt.zathura"] floating enable

@@ -81,6 +81,7 @@ upower
 valgrind
 vim
 wget
+wireshark-qt
 wl-clipboard
 wlopm
 wmenu

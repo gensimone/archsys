@@ -53,10 +53,10 @@ bindsym $mod+f fullscreen
 bindsym $mod+Shift+c exec cliphist wipe
 
 # Scritps (wmenu).
-bindsym $mod+b exec wmenu-books $menu-args
-bindsym $mod+d exec wmenu-kill $menu-args
-bindsym $mod+c exec wmenu-clipboard $menu-args
-bindsym $mod+r exec wmenu-rfc $menu-args
+bindsym $mod+b exec ~/.local/bin/wmenu-books $menu-args
+bindsym $mod+d exec ~/.local/bin/wmenu-kill $menu-args
+bindsym $mod+c exec ~/.local/bin/wmenu-clipboard $menu-args
+bindsym $mod+r exec ~/.local/bin/wmenu-rfc $menu-args
 
 # Essential keymaps.
 bindsym $mod+Escape exec swaylock

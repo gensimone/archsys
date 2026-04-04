@@ -3,7 +3,6 @@
 DELIMITER="|"
 
 while true; do
-
     # Sink.
     default_sink=$(pactl get-default-sink)
     default_muted=$(pactl get-sink-mute $default_sink)

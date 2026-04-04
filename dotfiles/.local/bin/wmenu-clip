@@ -1,0 +1,28 @@
+#!/bin/sh
+
+lines=$(cliphist list | wc -l)
+limit=5
+
+if [ $lines -gt $limit ]; then
+    lines=$limit
+fi
+
+if [ "$1" = "-c" ]; then
+    sel=`cliphist list | wmenu "${@:2}" -l $lines`
+    copy=1
+else
+    sel=`cliphist list | wmenu "$@" -l $lines`
+fi
+
+if [ -z "$sel" ]; then
+    exit 0
+fi
+
+res=`printf $sel | cliphist decode 2>/dev/null`
+
+if [ -n "$copy" ]; then
+    printf "$res" | wl-copy
+else
+    printf "$res"
+fi
+

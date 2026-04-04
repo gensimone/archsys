@@ -2,7 +2,8 @@
 
 rfc="/usr/share/doc/rfc/txt"
 
-# tail -n +2 discard the first element of the list.
 selected=$(ls $rfc | tail -n +2 | wmenu "$@" -l 5)
 
-[ -n "$selected" ] && foot --app-id=rfc less $rfc/$selected
+if [ -n "$selected" ]; then
+    foot --app-id=rfc less $rfc/$selected
+fi

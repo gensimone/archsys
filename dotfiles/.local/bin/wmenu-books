@@ -2,7 +2,8 @@
 
 books="$HOME/documents/books"
 
-# tail -n +2 discard the first element of the list.
 selected=$(find $books -exec basename {} \; | tail -n +2 | wmenu "$@" -l 5)
 
-[ -n "$selected" ] && zathura "$books/$selected"
+if [ -n "$selected" ]; then
+    zathura "$books/$selected"
+fi

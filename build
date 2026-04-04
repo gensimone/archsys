@@ -45,8 +45,3 @@ done
 for file in $ROOT/arch.d/*.sh; do
     . "$file"
 done
-
-for font in $ROOT/fonts/*; do
-    sudo cp -rfv $font /usr/share/fonts
-done
-fc-cache -fv

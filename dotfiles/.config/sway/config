@@ -18,7 +18,7 @@ font pango:Adwaita Mono 12
 
 # Startup applications.
 exec wl-paste --watch cliphist store
-exec swaybg -i ~/wallpapers/lightning.jpg
+exec swaybg -c 222222
 exec mako
 exec lxsession
 exec foot --app-id=pulsemixer pulsemixer

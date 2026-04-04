@@ -1,0 +1,15 @@
+#!/bin/sh
+
+input=`$HOME/.local/bin/wmenu-clip "$@"`
+
+if [ -z "$input" ]; then
+    exit 0
+fi
+
+translation=`trans -b :it+en "$input"`
+
+entry=`printf "$translation" | wmenu -l 2 "$@"`
+
+if [ -n "$entry" ]; then
+    printf "$entry" | wl-copy
+fi

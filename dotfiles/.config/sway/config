@@ -16,11 +16,6 @@ hide_edge_borders smart
 focus_follows_mouse no
 font pango:Adwaita Mono 12
 
-# Hide window title bar.
-# default_border pixel 3
-# default_floating_border pixel 1
-# for_window [class="^.*"] border pixel 3
-
 # Startup applications.
 exec wl-paste --watch cliphist store
 exec swaybg -i ~/wallpapers/lightning.jpg
@@ -55,8 +50,9 @@ bindsym $mod+Shift+c exec cliphist wipe
 # Scritps (wmenu).
 bindsym $mod+b exec ~/.local/bin/wmenu-books $menu-args
 bindsym $mod+d exec ~/.local/bin/wmenu-kill $menu-args
-bindsym $mod+c exec ~/.local/bin/wmenu-clipboard $menu-args
+bindsym $mod+c exec ~/.local/bin/wmenu-clip -c $menu-args
 bindsym $mod+r exec ~/.local/bin/wmenu-rfc $menu-args
+bindsym $mod+v exec ~/.local/bin/wmenu-trans $menu-args
 
 # Essential keymaps.
 bindsym $mod+Escape exec swaylock
@@ -145,14 +141,14 @@ bindsym $mod+Shift+t exec foot --app-id=dropdown --override=initial-window-size-
 bindsym $mod+t [app_id="dropdown"] scratchpad show; move position center
 
 # Resize windows.
-bindsym $mod+Ctrl+$left resize shrink width 20px
-bindsym $mod+Ctrl+$down resize grow height 20px
-bindsym $mod+Ctrl+$up resize shrink height 20px
-bindsym $mod+Ctrl+$right resize grow width 20px
-bindsym $mod+Ctrl+Left resize shrink width 20px
-bindsym $mod+Ctrl+Down resize grow height 20px
-bindsym $mod+Ctrl+Up resize shrink height 20px
-bindsym $mod+Ctrl+Right resize grow width 20px
+bindsym $mod+Ctrl+$left resize shrink width 25px
+bindsym $mod+Ctrl+$down resize grow height 25px
+bindsym $mod+Ctrl+$up resize shrink height 25px
+bindsym $mod+Ctrl+$right resize grow width 25px
+bindsym $mod+Ctrl+Left resize shrink width 25px
+bindsym $mod+Ctrl+Down resize grow height 25px
+bindsym $mod+Ctrl+Up resize shrink height 25px
+bindsym $mod+Ctrl+Right resize grow width 25px
 
 # Rules.
 for_window [app_id="pulsemixer"] move scratchpad

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+sel=`printf "" | wmenu "$@"`
+if [ -z "$sel" ]; then
+    exit 0
+fi
+
+chromium "duckduckgo.com/?q=$sel" >/dev/null 2>&1

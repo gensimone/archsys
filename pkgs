@@ -43,6 +43,7 @@ python-pip
 python-pipx
 python-poetry
 qbittorrent
+qemu-base
 qt5
 qt5-base
 qt5-declarative
@@ -86,6 +87,7 @@ unzip
 upower
 valgrind
 vim
+virt-manager
 wget
 wireshark-qt
 wl-clipboard

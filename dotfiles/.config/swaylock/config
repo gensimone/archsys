@@ -1,5 +1,5 @@
 indicator-radius=75
 color=000000
-font=Adwaita Mono
-font-size=14
+font=CaskaydiaMono Nerd Font
+font-size=13
 daemonize

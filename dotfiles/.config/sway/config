@@ -5,7 +5,8 @@ set $down j
 set $up k
 set $right l
 set $term foot
-set $menu-args -i -f 'Adwaita Mono 12' -N 000000 -n bbbbbb
+set $font CaskaydiaMono Nerd Font 11
+set $menu-args -i -f '$font' -b -N 000000 -n bbbbbb
 set $launcher wmenu-run $menu-args
 set $menu wmenu $menu-args
 set $screenshot_cmd grim && notify-send "Screenshot taken."
@@ -14,7 +15,7 @@ set $screenshot_cmd grim && notify-send "Screenshot taken."
 floating_modifier $mod normal
 hide_edge_borders smart
 focus_follows_mouse no
-font pango:Adwaita Mono 12
+font pango:$font
 
 # Startup applications.
 exec wl-paste --watch cliphist store

@@ -23,14 +23,17 @@ while true; do
     translation=`trans -b :$dst_lang "$input"`
     lines=`echo -e "$translation" | wc -l`
 
-    listen_cmd="*listen*"
+    listen_src_cmd="*listen input*"
+    listen_dst_cmd="*listen translation*"
     back_cmd="*back*"
 
     while true; do
-        entry=`printf "$translation\n$listen_cmd\n$back_cmd" | wmenu -l $(($lines+2)) "$@"`
+        entry=`printf "$translation\n$listen_src_cmd\n$listen_dst_cmd\n$back_cmd" | wmenu -l $(($lines+3)) "$@"`
         [ -z "$entry" ] && exit 0
 
-        if [ "$entry" = "$listen_cmd" ]; then
+        if [ "$entry" = "$listen_src_cmd" ]; then
+            `trans -b -play "$input"`
+        elif [ "$entry" = "$listen_dst_cmd" ]; then
             `trans -b :$dst_lang -play "$translation"`
         elif [ "$entry" = "$back_cmd" ]; then
             break

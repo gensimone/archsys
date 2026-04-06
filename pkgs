@@ -18,10 +18,12 @@ gcc
 gdb
 git
 go
+gopls
 ifuse
 irssi
 libmad
 libnotify
+lua-language-server
 lxsession
 make
 mako

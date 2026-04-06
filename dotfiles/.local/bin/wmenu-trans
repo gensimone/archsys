@@ -1,15 +1,42 @@
 #!/bin/sh
 
-input=`$HOME/.local/bin/wmenu-clip "$@"`
+# Use wmenu to interact with translate-shell.
+# Depends on translate-shell, wmenu.
+# It also uses wmenu-clip, which is needed to provided clipboard access through wmenu.
+#
+# Author: Simone Gentili
+# Other funny things at https://github.com/gensimone/archsys
 
-if [ -z "$input" ]; then
-    exit 0
-fi
+while true; do
+    input=`$HOME/.local/bin/wmenu-clip -p ">" "$@"`
+    [ -z "$input" ] && exit 0
 
-translation=`trans -b :it+en "$input"`
+    src_lang=`trans -identify "$input" | grep Code | awk '{print $2}'`
+    if [ "$src_lang" = "en" ]; then
+        dst_lang="it"
+    elif [ "$src_lang" = "it" ]; then
+        dst_lang="en"
+    else
+        dst_lang="it"
+    fi
 
-entry=`printf "$translation" | wmenu -l 2 "$@"`
+    translation=`trans -b :$dst_lang "$input"`
+    lines=`echo -e "$translation" | wc -l`
 
-if [ -n "$entry" ]; then
-    printf "$entry" | wl-copy
-fi
+    listen_cmd="*listen*"
+    back_cmd="*back*"
+
+    while true; do
+        entry=`printf "$translation\n$listen_cmd\n$back_cmd" | wmenu -l $(($lines+2)) "$@"`
+        [ -z "$entry" ] && exit 0
+
+        if [ "$entry" = "$listen_cmd" ]; then
+            `trans -b :$dst_lang -play "$translation"`
+        elif [ "$entry" = "$back_cmd" ]; then
+            break
+        else
+            printf "$entry" | wl-copy
+            exit 0
+        fi
+    done
+done

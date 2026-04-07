@@ -8,7 +8,7 @@
 # Other funny things at https://github.com/gensimone/archsys
 
 while true; do
-    input=`$HOME/.local/bin/wmenu-clip -p ">" "$@"`
+    input=`$HOME/.local/bin/wmenu-clip "$@"`
     [ -z "$input" ] && exit 0
 
     src_lang=`trans -identify "$input" | grep Code | awk '{print $2}'`

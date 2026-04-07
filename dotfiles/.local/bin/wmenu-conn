@@ -1,0 +1,45 @@
+#!/usr/bin/perl
+
+# Author: Simone Gentili
+# Still a WIP.
+
+use strict;
+use warnings;
+
+my $access_points = `nmcli device wifi list`;
+
+my @lines = split /\n/, $access_points;
+my $entries = "";
+my $count = 0;
+
+shift @lines; # Remove header from nmcli output.
+for (@lines) {
+    unless (/^\*/) {  # Exclude connected SSID and releated informations.
+        # FIXME: Ignore Missing/Redundant argument in sprintf for the moment.
+        # FIXME: Some SSIDs contains whitespaces. Need to extract this fields
+        #        in another way.
+        no warnings;
+
+        $entries = $entries . sprintf("%s %s %s %s %s %s %s %s %s\n", split);
+        $count++;
+    }
+}
+
+# FIXME: Need to pass '-f "<font-name>". Currently it doesn't work.'
+#        -N, -n and the others work though.
+my $entry=`printf "$entries" | wmenu @ARGV -l $count`;
+exit 0 unless $entry;
+
+# Assuming BSSID in the first field.
+my @fields = split / /, $entry;
+my $bssid = shift @fields;
+
+if (`nmcli device wifi connect $bssid`) {
+    my $passwd = `wmenu -P -p Password: @ARGV`;
+    exit 0 unless $passwd;
+    `printf "$passwd" | nmcli device wifi connect $bssid --ask`;
+    # `notify-send "$esit"`;
+    # if ($?) {
+    #     die "$esit\n";
+    # }
+}

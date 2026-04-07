@@ -8,6 +8,8 @@ use warnings;
 
 my $access_points = `nmcli device wifi list`;
 
+die "No access points detected by nmcli. Are you missing a wifi card?\n" unless ($access_points);
+
 my @lines = split /\n/, $access_points;
 my $entries = "";
 my $count = 0;

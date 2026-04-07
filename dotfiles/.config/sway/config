@@ -55,6 +55,7 @@ bindsym $mod+c exec ~/.local/bin/wmenu-clip -c $menu-args
 bindsym $mod+r exec ~/.local/bin/wmenu-rfc $menu-args
 bindsym $mod+v exec ~/.local/bin/wmenu-trans $menu-args
 bindsym $mod+s exec ~/.local/bin/wmenu-search $menu-args
+bindsym $mod+n exec ~/.local/bin/wmenu-conn $menu-args
 
 # Essential keymaps.
 bindsym $mod+Escape exec swaylock
@@ -125,7 +126,7 @@ bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ t
 bindsym --locked $mod+m exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
 bindsym --locked $mod+u exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
 bindsym --locked $mod+i exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-bindsym --locked $mod+n exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+# bindsym --locked $mod+n exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
 
 # Brightness controls.
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 10%-

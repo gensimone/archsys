@@ -6,17 +6,17 @@ set $up k
 set $right l
 set $term foot
 set $font CaskaydiaMono Nerd Font 11
-set $menu-args -p '>' -i -f '$font' -b -N 000000 -n bbbbbb
+set $menu-args -b -p '>' -i -f '$font' -N 000000 -n bbbbbb -S bbbbbb -s 000000 -M 000000 -m bbbbbb
 set $launcher wmenu-run $menu-args
 set $menu wmenu $menu-args
 set $screenshot_cmd grim && notify-send "Screenshot taken."
 
 # Colors                 # Border  Background  Text     Indicator  Child Border
-client.focused           #222222   #333333     #bbbbbb  #000000    #333333
-client.urgent            #222222   #333333     #bbbbbb  #000000    #333333
-client.focused_inactive  #000000   #000000     #bbbbbb  #000000    #000000
-client.unfocused         #000000   #000000     #bbbbbb  #000000    #000000
-client.focused_tab_title #000000   #000000     #bbbbbb
+client.focused           #bbbbbb   #bbbbbb     #000000  #000000    #bbbbbb
+client.urgent            #bbbbbb   #bbbbbb     #000000  #000000    #bbbbbb
+client.focused_inactive  #222222   #222222     #bbbbbb  #000000    #222222
+client.unfocused         #222222   #222222     #bbbbbb  #000000    #222222
+client.focused_tab_title #222222   #222222     #bbbbbb
 
 # Various settings.
 floating_modifier $mod normal
@@ -171,8 +171,13 @@ for_window [app_id="rfc"] floating enable
 bar {
     position bottom
     status_command ~/.config/sway/bar
+    height 20
     colors {
         background #000000
+        statusline #bbbbbb
+        # Workspace        Border   Background  Text
+        focused_workspace  #bbbbbb  #bbbbbb     #000000
+        inactive_workspace #222222  #222222     #bbbbbb
     }
 }
 

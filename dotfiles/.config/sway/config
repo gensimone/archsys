@@ -11,6 +11,13 @@ set $launcher wmenu-run $menu-args
 set $menu wmenu $menu-args
 set $screenshot_cmd grim && notify-send "Screenshot taken."
 
+# Colors                 # Border  Background  Text     Indicator  Child Border
+client.focused           #222222   #333333     #bbbbbb  #000000    #333333
+client.urgent            #222222   #333333     #bbbbbb  #000000    #333333
+client.focused_inactive  #000000   #000000     #bbbbbb  #000000    #000000
+client.unfocused         #000000   #000000     #bbbbbb  #000000    #000000
+client.focused_tab_title #000000   #000000     #bbbbbb
+
 # Various settings.
 floating_modifier $mod normal
 hide_edge_borders smart

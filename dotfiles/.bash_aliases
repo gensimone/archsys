@@ -1,3 +1,5 @@
 alias remove-orphans='pacman -Qdtq >/dev/null && sudo pacman -Rns $(pacman -Qdtq) || echo "Nothing to do.."'
+alias luks-open='sudo cryptsetup luksOpen'
+alias luks-close='sudo cryptsetup luksClose'
 alias dict='trans :it -d -i'
 alias tran='trans :it -b -i'

@@ -1,62 +1,50 @@
 #!/usr/bin/perl
 
 # Author: Simone Gentili
-# Still a WIP.
 
 use strict;
 use warnings;
-use POSIX qw/ setpgid /;
 
-my $scanning_pid = fork();
-if (!defined $scanning_pid) {
-    die "fork: $!";
-} elsif ($scanning_pid == 0) {
-    setpgid(0, 0);
-    system("printf '' | wmenu @ARGV -p 'Scanning...'");
-    exit 0
-}
+`nmcli device | grep wifi`;
+die "Missing wifi card.\n" if $?;
 
-my $access_points = `nmcli device wifi list`;
-kill '-KILL', $scanning_pid;
-waitpid($scanning_pid, 0);
-
-die "No access points detected by nmcli. Are you missing a wifi card?\n" unless ($access_points);
+my $access_points = `nmcli device wifi list --rescan no`;
+die "No access points detected.\n" unless ($access_points);
 
 my @lines = split /\n/, $access_points;
 my $entries = "";
 my $count = 0;
-
-shift @lines; # Remove header from nmcli output.
+shift @lines;
 for (@lines) {
-    unless (/^\*/) {  # Exclude connected SSID.
-        # FIXME: Ignore Missing/Redundant argument in sprintf for the moment.
-        # FIXME: Some SSIDs contains whitespaces. Need to extract this fields
-        #        in another way.
+    unless (/^\*/) {
         no warnings;
-
         $entries = $entries . sprintf("%s %s %s %s %s %s %s %s %s\n", split);
         $count++;
     }
 }
 
-# FIXME: Need to pass '-f "<font-name>". Currently it doesn't work.'
-open(my $fh, "-|, "wmenu -l $count", @ARGV) or die "open: $!";
-print $fh, $entries;
-my $entry = <$fh>;
-close $fh or die "close: $!";
+my $args = "";
+while (my $arg = shift @ARGV) {
+    $args = "$args $arg";
+    if ($arg eq "-f" or $arg eq "-p") {
+        my $font = shift @ARGV;
+        $args = "$args '$font'";
+    }
+}
 
+printf "$args\n";
+
+my $get_entry_cmd = sprintf("printf '%s' | wmenu %s -l %d", $entries, $args, $count);
+my $entry = `$get_entry_cmd`;
 exit 0 unless $entry;
 
-# Assuming BSSID in the first field.
 my @fields = split / /, $entry;
 my $bssid = shift @fields;
 
-if (`nmcli device wifi connect $bssid`) {
-    my $passwd = `wmenu -P -p Password: @ARGV`;
+system("nmcli device wifi connect $bssid");
+if ($?) {
+    my $get_passwd_cmd = sprintf("printf '' | wmenu %s -P -p 'Password:'", $args);
+    my $passwd = `$get_passwd_cmd`;
     exit 0 unless $passwd;
     `printf "$passwd" | nmcli device wifi connect $bssid --ask`;
-    # `notify-send "$esit"`;
-    # if ($?) {
-    #     die "$esit\n";
-    # }
 }

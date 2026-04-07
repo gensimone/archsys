@@ -1,8 +1,10 @@
 #!/bin/sh
 
 sel=`printf "" | wmenu "$@"`
-if [ -z "$sel" ]; then
-    exit 0
-fi
+[ -z "$sel" ] && exit 0
 
-chromium "duckduckgo.com/?q=$sel" >/dev/null 2>&1
+if printf "$sel" | grep -E "^[[:alnum:]]+\.[[:alnum:]]+$"; then
+    chromium "$sel" >/dev/null 2>&1
+else
+    chromium "duckduckgo.com/?q=$sel" >/dev/null 2>&1
+fi

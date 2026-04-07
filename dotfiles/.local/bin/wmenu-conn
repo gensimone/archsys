@@ -5,8 +5,20 @@
 
 use strict;
 use warnings;
+use POSIX qw/ setpgid /;
+
+my $scanning_pid = fork();
+if (!defined $scanning_pid) {
+    die "fork: $!";
+} elsif ($scanning_pid == 0) {
+    setpgid(0, 0);
+    system("printf '' | wmenu @ARGV -p 'Scanning...'");
+    exit 0
+}
 
 my $access_points = `nmcli device wifi list`;
+kill '-KILL', $scanning_pid;
+waitpid($scanning_pid, 0);
 
 die "No access points detected by nmcli. Are you missing a wifi card?\n" unless ($access_points);
 
@@ -16,7 +28,7 @@ my $count = 0;
 
 shift @lines; # Remove header from nmcli output.
 for (@lines) {
-    unless (/^\*/) {  # Exclude connected SSID and releated informations.
+    unless (/^\*/) {  # Exclude connected SSID.
         # FIXME: Ignore Missing/Redundant argument in sprintf for the moment.
         # FIXME: Some SSIDs contains whitespaces. Need to extract this fields
         #        in another way.
@@ -28,8 +40,11 @@ for (@lines) {
 }
 
 # FIXME: Need to pass '-f "<font-name>". Currently it doesn't work.'
-#        -N, -n and the others work though.
-my $entry=`printf "$entries" | wmenu @ARGV -l $count`;
+open(my $fh, "-|, "wmenu -l $count", @ARGV) or die "open: $!";
+print $fh, $entries;
+my $entry = <$fh>;
+close $fh or die "close: $!";
+
 exit 0 unless $entry;
 
 # Assuming BSSID in the first field.

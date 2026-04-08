@@ -23,6 +23,10 @@ hide_edge_borders smart
 focus_follows_mouse no
 font pango:$font
 
+# Output settings.
+output eDP-1 mode 1920x1080 pos 0 0
+output HDMI-A-1 mode 1920x1080 pos 1920 0
+
 # Floating windows.
 floating_modifier $mod normal
 floating_maximum_size 1500 x 800

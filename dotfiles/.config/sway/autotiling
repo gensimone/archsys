@@ -1,0 +1,23 @@
+#!/usr/bin/python
+
+from i3ipc import Connection, Event
+
+
+def handler(connection: Connection, _) -> None:
+    container = connection.get_tree().find_focused()
+
+    is_floating = container.type == "floating_con"
+    is_full_screen = container.fullscreen_mode == 1
+    is_stacked = container.parent.layout == "stacked"
+    is_tabbed = container.parent.layout == "tabbed"
+
+    if (not is_floating and not is_stacked and not is_tabbed and not is_full_screen):
+        new_layout = "splitv" if container.rect.height > container.rect.width else "splith"
+        if new_layout != container.parent.layout:
+            connection.command(new_layout)
+
+
+i3 = Connection()
+i3.on(Event["WINDOW"], handler)
+i3.on(Event["MODE"], handler)
+i3.main()

@@ -19,10 +19,14 @@ client.unfocused         #222222   #222222     #bbbbbb  #000000    #222222
 client.focused_tab_title #222222   #222222     #bbbbbb
 
 # Various settings.
-floating_modifier $mod normal
 hide_edge_borders smart
 focus_follows_mouse no
 font pango:$font
+
+# Floating windows.
+floating_modifier $mod normal
+floating_maximum_size 1500 x 800
+floating_minimum_size 1500 x 800
 
 # Startup applications.
 exec wl-paste --watch cliphist store
@@ -145,9 +149,9 @@ bindsym Print exec $screenshot_cmd
 bindsym $mod+Shift+s exec $screenshot_cmd
 
 # Scratchpads.
-bindsym $mod+Shift+a exec foot --app-id=pulsemixer pulsemixer
+bindsym $mod+Shift+a exec foot --app-id=pulsemixer -w 600x175 pulsemixer
 bindsym $mod+a [app_id="pulsemixer"] scratchpad show; move position center
-bindsym $mod+Shift+t exec foot --app-id=dropdown --override=initial-window-size-pixels=1200x750
+bindsym $mod+Shift+t exec foot --app-id=dropdown -w 1200x650
 bindsym $mod+t [app_id="dropdown"] scratchpad show; move position center
 
 # Resize windows.

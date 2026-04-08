@@ -8,10 +8,7 @@ use warnings;
 `nmcli device | grep wifi`;
 die "Missing wifi card.\n" if $?;
 
-my $access_points = `nmcli device wifi list --rescan no`;
-die "No access points detected.\n" unless ($access_points);
-
-my @lines = split /\n/, $access_points;
+my @lines = split /\n/, `nmcli device wifi list --rescan no`;
 my $entries = "";
 my $count = 0;
 shift @lines;
@@ -23,6 +20,8 @@ for (@lines) {
     }
 }
 
+die "No access points available.\n" unless $count;
+
 my $args = "";
 while (my $arg = shift @ARGV) {
     $args = "$args $arg";
@@ -31,8 +30,6 @@ while (my $arg = shift @ARGV) {
         $args = "$args '$font'";
     }
 }
-
-printf "$args\n";
 
 my $get_entry_cmd = sprintf("printf '%s' | wmenu %s -l %d", $entries, $args, $count);
 my $entry = `$get_entry_cmd`;

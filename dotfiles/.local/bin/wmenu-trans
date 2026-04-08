@@ -11,6 +11,8 @@ while true; do
     input=`$HOME/.local/bin/wmenu-clip "$@"`
     [ -z "$input" ] && exit 0
 
+    wl-copy "$input"
+
     src_lang=`trans -identify "$input" | grep Code | awk '{print $2}'`
     if [ "$src_lang" = "en" ]; then
         dst_lang="it"

@@ -148,9 +148,9 @@ bindsym Print exec $screenshot_cmd
 bindsym $mod+Shift+s exec $screenshot_cmd
 
 # Scratchpads.
-bindsym $mod+Shift+a exec foot --app-id=pulsemixer pulsemixer
+bindsym $mod+Shift+a exec foot --app-id=pulsemixer -w 600x175 pulsemixer
 bindsym $mod+a [app_id="pulsemixer"] scratchpad show; move position center
-bindsym $mod+Shift+t exec foot --app-id=dropdown --override=initial-window-size-pixels=1200x750
+bindsym $mod+Shift+t exec foot --app-id=dropdown -w 1200x650
 bindsym $mod+t [app_id="dropdown"] scratchpad show; move position center
 
 # Resize windows.

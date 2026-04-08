@@ -5,43 +5,77 @@
 use strict;
 use warnings;
 
-`nmcli device | grep wifi`;
-die "Missing wifi card.\n" if $?;
+sub get_wifi_devs {
+    my @devices = `nmcli device`;
+    my @wifi_devs = ();
+    while (my $line = shift @devices) {
+        if ($line =~ / wifi /) {
+            my @fields = split / /, $line;
+            push @wifi_devs, $fields[0];
+        }
+    }
+    return @wifi_devs;
+}
 
-my @lines = split /\n/, `nmcli device wifi list --rescan no`;
-my $entries = "";
-my $count = 0;
-shift @lines;
-for (@lines) {
-    unless (/^\*/) {
-        no warnings;
-        $entries = $entries . sprintf("%s %s %s %s %s %s %s %s %s\n", split);
-        $count++;
+sub preserve_quoted_args {
+    my $args = "";
+    while (my $arg = shift @ARGV) {
+        $args = "$args $arg";
+        if ($arg eq "-f" or $arg eq "-p") {
+            my $font = shift @ARGV;
+            $args = "$args '$font'";
+        }
+    }
+    return $args;
+}
+
+sub call_wmenu {
+    my $args = shift @_;
+    my $entries = shift @_;
+    my $lines = shift @_;
+
+    unless (defined $lines) {
+        $lines  = scalar split /\n/, $entries;
+    }
+
+    my $wmenu_cmd = sprintf("printf '%s' | wmenu %s -l %d", $entries, $args, $lines);
+    return `$wmenu_cmd`;
+}
+
+sub connect_bssid {
+    my $bssid = shift @_;
+    my $args = shift @_;
+    system("nmcli device wifi connect $bssid");
+    if ($?) {
+        my $passwd = call_wmenu(join(" ", $args, "-P -p 'Password:'"), "", 0);
+        exit 0 unless $passwd;
+        `printf "$passwd" | nmcli --wait 3 device wifi connect $bssid --ask`;
     }
 }
 
-die "No access points available.\n" unless $count;
+my $args = preserve_quoted_args(); # String version of @ARGV with quoted args.
+                                   # Do you know a better way?
 
-my $args = "";
-while (my $arg = shift @ARGV) {
-    $args = "$args $arg";
-    if ($arg eq "-f" or $arg eq "-p") {
-        my $font = shift @ARGV;
-        $args = "$args '$font'";
-    }
+my @wifi_devs = get_wifi_devs();
+my $dev;
+if (@wifi_devs == 0) {
+    die "No wifi devices detected.";
+} elsif (@wifi_devs == 1) {
+    $dev = shift @wifi_devs;
+} else {
+    $dev = call_wmenu(join(" ", $args, "-p 'Device':"), join("\n", @wifi_devs));
+    exit 0 unless $dev;
 }
 
-my $get_entry_cmd = sprintf("printf '%s' | wmenu %s -l %d", $entries, $args, $count);
-my $entry = `$get_entry_cmd`;
-exit 0 unless $entry;
+my $ap_info = call_wmenu($args, scalar `nmcli device wifi list --rescan no ifname $dev`);
+exit 0 unless $ap_info;
+exit 0 if $ap_info =~ /.*IN-USE.*SECURITY.*$/; # The user selected the header line.
 
-my @fields = split / /, $entry;
-my $bssid = shift @fields;
-
-system("nmcli device wifi connect $bssid");
-if ($?) {
-    my $get_passwd_cmd = sprintf("printf '' | wmenu %s -P -p 'Password:'", $args);
-    my $passwd = `$get_passwd_cmd`;
-    exit 0 unless $passwd;
-    `printf "$passwd" | nmcli device wifi connect $bssid --ask`;
+my @ap_fields = split / +/, $ap_info;
+my $bssid = $ap_fields[1];  # Assuming BSSID in the second field (first field is a space).
+if ($ap_fields[0] eq "*") { # Already connected access point selected.
+    `nmcli device disconnect $dev`;
+    exit 0;
 }
+
+connect_bssid($bssid, $args);

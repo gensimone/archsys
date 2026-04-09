@@ -1,0 +1,8 @@
+#!/bin/sh
+
+
+word=`printf "" | wmenu "$@" -p "Dictionary:"`
+[ -z "$word" ] && exit 0
+output=`trans -no-ansi -d "$word"`
+lines=`printf "$output" | wc -l`
+printf "$output" | wmenu "$@" -l $(($lines+1))

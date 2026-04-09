@@ -66,12 +66,13 @@ bindsym $mod+Shift+c exec cliphist wipe
 
 # Scritps (wmenu).
 bindsym $mod+b exec ~/.local/bin/wmenu-books $menu-args
-bindsym $mod+d exec ~/.local/bin/wmenu-kill $menu-args
 bindsym $mod+c exec ~/.local/bin/wmenu-clip -c $menu-args
-bindsym $mod+r exec ~/.local/bin/wmenu-rfc $menu-args
-bindsym $mod+v exec ~/.local/bin/wmenu-trans $menu-args
-bindsym $mod+s exec ~/.local/bin/wmenu-search $menu-args
+bindsym $mod+d exec ~/.local/bin/wmenu-kill $menu-args
 bindsym $mod+n exec ~/.local/bin/wmenu-conn $menu-args
+bindsym $mod+r exec ~/.local/bin/wmenu-rfc $menu-args
+bindsym $mod+s exec ~/.local/bin/wmenu-search $menu-args
+bindsym $mod+v exec ~/.local/bin/wmenu-trans $menu-args
+bindsym $mod+w exec ~/.local/bin/wmenu-wiki $menu-args
 
 # Essential keymaps.
 bindsym $mod+Escape exec swaylock
@@ -101,10 +102,6 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-
-# Layout controls.
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
 
 # Floating windows.
 bindsym $mod+Shift+space floating toggle

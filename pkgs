@@ -1,6 +1,7 @@
 adw-gtk-theme
 bash-completion
 bash-language-server
+batsignal
 bluetui
 bluez
 bluez-utils
@@ -29,11 +30,13 @@ make
 mako
 man-db
 man-pages
+meson
 mpv
 neovim
 networkmanager
 newsboat
 nmap
+npm
 nwg-look
 openssh
 pulseaudio
@@ -78,13 +81,14 @@ swayidle
 swayimg
 swaylock
 syncthing
+telegram-desktop
 tmux
 torbrowser-launcher
 translate-shell
 tree
 ttf-cascadia-mono-nerd
 ttf-nerd-fonts-symbols
-tuned
+tuned-ppd
 unzip
 upower
 valgrind

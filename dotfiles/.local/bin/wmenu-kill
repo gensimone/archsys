@@ -1,6 +1,6 @@
 #!/bin/sh
 
-selected=$(ps -e | tail -n +2 | awk '{print $1 " " $NF}' | wmenu "$@" -l 5 | cut -d ' ' -f 1)
+selected=$(ps -e | tail -n +2 | awk '{print $1 " " $NF}' | wmenu "$@" -l 5 -p "Kill:" | cut -d ' ' -f 1)
 
 if [ -n "$selected" ]; then
 	kill $selected

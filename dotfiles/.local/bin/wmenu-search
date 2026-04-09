@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sel=`printf "" | wmenu "$@"`
+sel=`printf "" | wmenu "$@" -p "Search:"`
 [ -z "$sel" ] && exit 0
 
 if printf "$sel" | grep -E "^[[:alnum:]]+\.[[:alnum:]]+$"; then

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+search=`print "" | wmenu "$@" -p "Wikipedia:"`
+
+[ -z $search ] && exit 0
+
+chromium "https://en.wikipedia.org/wiki/Special:Search?search=$search"

@@ -1,0 +1,20 @@
+* Fix export of environment variables:
+    QT_QPA_PLATFORM=wayland
+    QT_QPA_PLATFORMTHEME=qt6ct
+
+* Allow comments in pkgs, groups, etc..
+
+* Add the ability to automatically add/remove diff-pkgs in pkgs.
+
+* wmenu-conn:
+    Add the "Serching.." wmenu message whenever we are using nmcli with --rescan on (and auto?).
+    Add the ability to launch the script with different flags:
+        * (nmcli) Interesting ones are:
+            -> -r, --rescan on|auto|off
+            -> -p, --pretty
+            -> -w, --wait
+
+        * (wmenu-conn):
+            -> Permit to specify a wireless network interface directly (using -i or --ifname)
+
+        * (wmenu) Pass all the other options to it.

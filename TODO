@@ -6,6 +6,8 @@
 
 * Add the ability to automatically add/remove diff-pkgs in pkgs.
 
+* Remove nwg-look and qt6ct dependencies. How can I achive the same result without using those tools?
+
 * wmenu-conn:
     Add the "Serching.." wmenu message whenever we are using nmcli with --rescan on (and auto?).
     Add the ability to launch the script with different flags:

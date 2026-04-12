@@ -1,18 +1,15 @@
 #!/bin/sh
 
 ROOT="$(cd "$(dirname "$0")" || exit 1; pwd -P)"
+SPHINX=$ROOT/dotfiles/.local/bin/sphinx
 
-if ! sudo pacman --needed --noconfirm -Syu -< ./pkgs; then
-    echo "Aborted" >&2
-    exit 1
-fi
+$SPHINX $ROOT/pkgs | sudo pacman --needed --noconfirm -Syu -
+[ $? -gt 0 ] && exit 1
 
 exec_func() {
-  while IFS= read -r line; do
-    if ! [[ "$line" =~ ^[[:space:]]*# ]] && [ -n "$line" ]; then
-      "$2" "$line"
-    fi
-  done < "$1"
+    for line in "$($SPHINX "$1")"; do
+        "$2" "$line"
+    done
 }
 
 enable_user_service() {

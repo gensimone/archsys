@@ -7,7 +7,9 @@ $SPHINX $ROOT/pkgs | sudo pacman --needed --noconfirm -Syu -
 [ $? -gt 0 ] && exit 1
 
 exec_func() {
-    for line in "$($SPHINX "$1")"; do
+    file=`$SPHINX "$1"`
+    [ -z "$file" ] && return
+    for line in "$file"; do
         "$2" "$line"
     done
 }

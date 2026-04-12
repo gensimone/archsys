@@ -1,43 +1,56 @@
-#!/bin/sh
+#!/usr/bin/perl
 
-pkgs=$(cat $HOME/codes/archsys/pkgs)
+use strict;
+use warnings;
 
-pkgs_to_exclude="
-    base           \
-    efibootmgr     \
-    intel-ucode    \
-    linux-firmware \
-    linux-lts      \
-    sof-firmware   \
-    sudo           \
-    wpa_supplicant \
-    zram-generator"
+my $root = "$ENV{'HOME'}/codes/archsys";
+my $pkgs = `$root/dotfiles/.local/bin/sphinx $root/pkgs`;
+my $pkgs_to_exclude = "
+base
+efibootmgr
+intel-ucode
+linux
+linux-firmware
+linux-lts
+linux-zen
+sof-firmware
+sudo
+wpa_supplicant
+zram-generator
+";
 
-# Installed packages.
-installed_pkgs=$(pacman -Qei | grep Name | awk '{print $3}')
-diff_installed_pkgs=
-for pkg in $installed_pkgs; do
-    if [[ "$pkgs_to_exclude" != *"$pkg"* ]] && [[ "$pkgs" != *"$pkg"* ]]; then
-        diff_installed_pkgs="$diff_installed_pkgs $pkg"
-    fi
-done
-if [ -n "$diff_installed_pkgs" ]; then
-    echo "Installed:"
-    for pkg in $diff_installed_pkgs; do
-        echo "  $pkg"
-    done
-fi
+my @installed_pkgs;
+foreach (`pacman -Qei`) {
+    if (/^Name\s+:\s(.*)\s*$/) {
+        push @installed_pkgs, $1;
+    }
+}
 
-# Removed packages.
-diff_removed_pkgs=
-for pkg in $pkgs; do
-    if [[ "$installed_pkgs" != *"$pkg"* ]]; then
-        diff_removed_pkgs="$diff_removed_pkgs $pkg"
-    fi
-done
-if [ -n "$diff_removed_pkgs" ]; then
-    echo "Removed:"
-    for pkg in $diff_removed_pkgs; do
-        echo "  $pkg"
-    done
-fi
+sub diff_installed_pkgs {
+    my @diff_installed_pkgs;
+    foreach my $pkg (@installed_pkgs) {
+        if ($pkgs_to_exclude !~ /\b$pkg\b/ and $pkgs !~ /\b$pkg\b/) {
+            push @diff_installed_pkgs, $pkg;
+        }
+    }
+    if (@diff_installed_pkgs) {
+        print "Installed:\n";
+        print "  $_\n" foreach @diff_installed_pkgs;
+    }
+}
+
+sub diff_removed_pkgs {
+    my @diff_removed_pkgs;
+    foreach my $pkg (split /\n/, $pkgs) {
+        unless ($pkg ~~ @installed_pkgs) {
+            push @diff_removed_pkgs, $pkg;
+        }
+    }
+    if (@diff_removed_pkgs) {
+        print "Removed:\n";
+        print "  $_\n" foreach @diff_removed_pkgs;
+    }
+}
+
+diff_installed_pkgs();
+diff_removed_pkgs();

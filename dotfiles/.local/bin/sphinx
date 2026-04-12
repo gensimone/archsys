@@ -2,7 +2,7 @@
 
 while (<>) {
     unless (/^\s*$/) {
-        s/#.*$//;
+        s/\s*#.*$//;
         print unless (/^\s*$/);
     }
 }

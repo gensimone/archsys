@@ -13,7 +13,7 @@ while true; do
 
     wl-copy "$input"
 
-    src_lang=`trans -identify "$input" | grep Code | awk '{print $2}'`
+    src_lang=`trans -no-ansi -identify "$input" | grep Code | awk '{print $2}'`
     if [ "$src_lang" = "en" ]; then
         dst_lang="it"
     elif [ "$src_lang" = "it" ]; then

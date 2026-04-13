@@ -3,8 +3,9 @@
 # Author: Simone Gentili
 # More wmenu scripts at https://github.com/gensimone/archsys
 
-use strict;
-use warnings;
+# use strict;
+# use warnings;
+use Getopt::Long;
 
 sub preserve_quoted_args {
     my $args = "";
@@ -17,9 +18,6 @@ sub preserve_quoted_args {
     }
     return $args;
 }
-
-my $args = preserve_quoted_args(); # String version of @ARGV with quoted args.
-                                   # Do you know a better way?
 
 sub get_wifi_devs {
     my @devices = `nmcli device`;
@@ -44,12 +42,13 @@ sub call_wmenu {
 }
 
 sub connect_bssid {
-    my $bssid = shift @_;
+    my $bssid = shift;
+    my $wait = shift;
     system("nmcli device wifi connect $bssid");
     if ($?) {
         my $passwd = call_wmenu(join(" ", $args, "-P -p 'Password:'"), "");
         exit 0 unless $passwd;
-        `printf "$passwd" | nmcli --wait 3 device wifi connect $bssid --ask`;
+        `printf "$passwd" | nmcli --wait $wait device wifi connect $bssid --ask`;
     }
 }
 
@@ -67,9 +66,24 @@ sub get_device {
     return $dev
 }
 
-my $dev = get_device();
-my $ap_info = call_wmenu($args, scalar `nmcli device wifi list --rescan yes ifname $dev`);
+my $dev;
+my $rescan = "no";
+my $wait = 3;
+GetOptions (
+    "ifname=s" => \$dev,
+    "rescan=s" => \$rescan,
+    "wait=i" => \$wait,
+) or exit 1;
 
+my $args = preserve_quoted_args(); # String version of @ARGV with quoted args.
+                                   # Do you know a better way?
+
+$dev = get_device() unless ($dev);
+
+my $aps = `nmcli device wifi list --rescan $rescan ifname $dev`;
+exit $? if $?;
+
+my $ap_info = call_wmenu($args, $aps);
 exit 0 unless $ap_info;
 exit 0 if $ap_info =~ /.*IN-USE.*SECURITY.*$/; # The user selected the header line.
 
@@ -80,4 +94,4 @@ if ($ap_fields[0] eq "*") { # Already connected access point selected.
     exit 0;
 }
 
-connect_bssid($bssid);
+connect_bssid($bssid, $wait);

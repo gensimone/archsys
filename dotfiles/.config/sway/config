@@ -32,7 +32,7 @@ floating_modifier $mod normal
 floating_maximum_size 1500 x 800
 
 # Startup applications.
-exec swaybg -i ~/.config/sway/wallpaper.jpg
+exec swaybg -i ~/.wallpaper
 exec wl-paste --watch cliphist store
 exec mako
 exec lxsession

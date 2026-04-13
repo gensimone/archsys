@@ -67,7 +67,8 @@ bindsym $mod+Shift+c exec cliphist wipe
 bindsym $mod+b exec ~/.local/bin/wmenu-books $menu-args
 bindsym $mod+c exec ~/.local/bin/wmenu-clip -c $menu-args
 bindsym $mod+x exec ~/.local/bin/wmenu-kill $menu-args
-bindsym $mod+n exec ~/.local/bin/wmenu-conn $menu-args
+bindsym $mod+n exec ~/.local/bin/wmenu-conn --rescan no -- $menu-args
+bindsym $mod+Shift+n exec ~/.local/bin/wmenu-conn --rescan yes -- $menu-args
 bindsym $mod+r exec ~/.local/bin/wmenu-rfc $menu-args
 bindsym $mod+s exec ~/.local/bin/wmenu-search $menu-args
 bindsym $mod+v exec ~/.local/bin/wmenu-trans $menu-args

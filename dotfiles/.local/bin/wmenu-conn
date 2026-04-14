@@ -81,6 +81,11 @@ sub get_aps {
         if ($scanning_pid == 0) {
             setpgid(0, 0);
             call_wmenu(join(" ", $args, "-p 'Scanning...'"));
+
+            # If the user presses 'Escape' we must exit here
+            # to prevent the execution of other code.
+            # TODO: If the user presses 'Escape' we want to
+            #       exit the application entirely.
             exit 0
         }
     }

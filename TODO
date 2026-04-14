@@ -1,14 +1,1 @@
 * Remove nwg-look and qt6ct dependencies. How can I achive the same result without using those tools?
-
-* wmenu-conn:
-    Add the "Serching.." wmenu message whenever we are using nmcli with --rescan on (and auto?).
-    Add the ability to launch the script with different flags:
-        * (nmcli) Interesting ones are:
-            -> -r, --rescan on|auto|off
-            -> -p, --pretty
-            -> -w, --wait
-
-        * (wmenu-conn):
-            -> Permit to specify a wireless network interface directly (using -i or --ifname)
-
-        * (wmenu) Pass all the other options to it.

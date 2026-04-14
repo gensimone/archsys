@@ -3,9 +3,10 @@
 # Author: Simone Gentili
 # More wmenu scripts at https://github.com/gensimone/archsys
 
-# use strict;
-# use warnings;
+use strict;
+use warnings;
 use Getopt::Long;
+use POSIX qw/ setpgid /;
 
 sub preserve_quoted_args {
     my $args = "";
@@ -16,7 +17,7 @@ sub preserve_quoted_args {
             $args = "$args '$font'";
         }
     }
-    return $args;
+    $args;
 }
 
 sub get_wifi_devs {
@@ -28,31 +29,33 @@ sub get_wifi_devs {
             push @wifi_devs, $fields[0];
         }
     }
-    return @wifi_devs;
+    @wifi_devs;
 }
 
 sub call_wmenu {
     my $args = shift;
-    my $entries = shift;
+    my $entries = shift || "";
     my $bg = shift || "";
     my $lines = shift || scalar(split /\n/, $entries);
 
     my $wmenu_cmd = sprintf("printf '%s' | wmenu %s -l %d %s", $entries, $args, $lines, $bg);
-    return `$wmenu_cmd`;
+    `$wmenu_cmd`;
 }
 
 sub connect_bssid {
     my $bssid = shift;
-    my $wait = shift;
+    my $args = shift || "";
+    my $wait = shift || 90;
     system("nmcli device wifi connect $bssid");
     if ($?) {
-        my $passwd = call_wmenu(join(" ", $args, "-P -p 'Password:'"), "");
+        my $passwd = call_wmenu(join(" ", $args, "-P -p 'Password:'"));
         exit 0 unless $passwd;
         `printf "$passwd" | nmcli --wait $wait device wifi connect $bssid --ask`;
     }
 }
 
 sub get_device {
+    my $args = shift || "";
     my @wifi_devs = get_wifi_devs();
     my $dev;
     if (@wifi_devs == 0) {
@@ -63,7 +66,34 @@ sub get_device {
         $dev = call_wmenu(join(" ", $args, "-p 'Device':"), join("\n", @wifi_devs));
         exit 0 unless $dev;
     }
-    return $dev
+    $dev
+}
+
+sub get_aps {
+    my $dev = shift;
+    my $rescan = shift || "yes";
+    my $args = shift || "";
+
+    my $scanning_pid;
+    if ($rescan =~ /^(auto|yes)$/) {
+        $scanning_pid = fork();
+        die "fork: $!" unless defined $scanning_pid;
+        if ($scanning_pid == 0) {
+            setpgid(0, 0);
+            call_wmenu(join(" ", $args, "-p 'Scanning...'"));
+            exit 0
+        }
+    }
+
+    my $aps = `nmcli device wifi list --rescan $rescan ifname $dev`;
+    exit $? if $?;
+
+    if ($scanning_pid) {
+        kill '-KILL', $scanning_pid;
+        waitpid($scanning_pid, 0);
+    }
+
+    $aps;
 }
 
 my $dev;
@@ -78,10 +108,9 @@ GetOptions (
 my $args = preserve_quoted_args(); # String version of @ARGV with quoted args.
                                    # Do you know a better way?
 
-$dev = get_device() unless ($dev);
+$dev = get_device($args) unless ($dev);
 
-my $aps = `nmcli device wifi list --rescan $rescan ifname $dev`;
-exit $? if $?;
+my $aps = get_aps($dev, $rescan, $args);
 
 my $ap_info = call_wmenu($args, $aps);
 exit 0 unless $ap_info;
@@ -93,5 +122,4 @@ if ($ap_fields[0] eq "*") { # Already connected access point selected.
     `nmcli device disconnect $dev`;
     exit 0;
 }
-
-connect_bssid($bssid, $wait);
+connect_bssid($bssid, $args, $wait);

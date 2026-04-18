@@ -10,6 +10,7 @@ chromium
 clang
 cliphist
 cmus
+docker
 dosfstools
 fd
 firewalld
@@ -22,6 +23,7 @@ go
 gopls
 ifuse
 irssi
+jdk-openjdk
 libmad
 libnotify
 lua-language-server

@@ -8,7 +8,7 @@ set font          "CaskaydiaMono Nerd Font 11"
 set guioptions    ""
 
 # Colorscheme.
-set default-bg         "#222222"
+set default-bg         "#000000"
 set default-fg         "#bbbbbb"
-set recolor-lightcolor "#222222"
+set recolor-lightcolor "#000000"
 set recolor-darkcolor  "#bbbbbb"

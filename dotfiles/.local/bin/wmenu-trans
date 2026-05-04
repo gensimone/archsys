@@ -27,10 +27,11 @@ while true; do
 
     listen_src_cmd="*listen input*"
     listen_dst_cmd="*listen translation*"
+    copy_all_cmd="*copy all*"
     back_cmd="*back*"
 
     while true; do
-        entry=`printf "$translation\n$listen_src_cmd\n$listen_dst_cmd\n$back_cmd" | wmenu -l $(($lines+3)) "$@"`
+        entry=`printf "$translation\n$listen_src_cmd\n$listen_dst_cmd\n$copy_all_cmd\n$back_cmd" | wmenu -l $(($lines+4)) "$@"`
         [ -z "$entry" ] && exit 0
 
         if [ "$entry" = "$listen_src_cmd" ]; then
@@ -39,6 +40,9 @@ while true; do
             `trans -b :$dst_lang -play "$translation"`
         elif [ "$entry" = "$back_cmd" ]; then
             break
+        elif [ "$entry" = "$copy_all_cmd" ]; then
+            echo $translation | wl-copy
+            exit 0
         else
             printf "$entry" | wl-copy
             exit 0

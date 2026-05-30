@@ -5,7 +5,7 @@ set $down j
 set $up k
 set $right l
 set $term foot
-set $font CaskaydiaMono Nerd Font 11
+set $font Monaco 11
 set $menu-args -p '>' -i -f '$font' -N 000000 -n bbbbbb -S bbbbbb -s 000000 -M bbbbbb -m 000000
 set $launcher wmenu-run $menu-args
 set $menu wmenu $menu-args

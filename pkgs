@@ -22,9 +22,6 @@ gdb
 git
 go
 gopls
-ifuse
-irssi
-jdk-openjdk
 libmad
 libnotify
 lua-language-server
@@ -74,7 +71,6 @@ qt5-wayland
 qt5-x11extras
 qt5-xmlpatterns
 qt6ct
-rfc
 ripgrep
 rsync
 rustup

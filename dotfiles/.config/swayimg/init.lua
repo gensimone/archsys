@@ -14,7 +14,7 @@ swayimg.imagelist.enable_adjacent(false)
 swayimg.imagelist.enable_fsmon(true)
 
 -- Text overlay configuration
-swayimg.text.set_font("Monaco")
+swayimg.text.set_font("Hack Nerd Font Mono")
 swayimg.text.set_size(17)
 swayimg.text.set_spacing(0)
 swayimg.text.set_padding(10)

@@ -5,18 +5,18 @@ set $down j
 set $up k
 set $right l
 set $term foot
-set $menu-args -p '>' -i -f '$font' -N 000000 -n ffffff -S ffffff -s 000000 -M ffffff -m 000000
 set $font Hack Nerd Font Mono 12
+set $menu-args -b -p '>' -i -f '$font' -N 111111 -n bbbbbb -S bbbbbb -s 111111 -M bbbbbb -m 111111
 set $launcher wmenu-run $menu-args
 set $menu wmenu $menu-args
 set $screenshot_cmd grim && notify-send "Screenshot taken."
 
 # Colors                 # Border  Background  Text     Indicator  Child Border
-client.focused           #ffffff   #ffffff     #000000   #000000    #ffffff
-client.urgent            #ffffff   #ffffff     #000000   #000000    #ffffff
-client.focused_inactive  #222222   #222222     #ffffff   #000000    #222222
-client.unfocused         #222222   #222222     #ffffff   #000000    #222222
-client.focused_tab_title #222222   #222222     #ffffff
+client.focused           #bbbbbb   #bbbbbb     #000000   #000000    #bbbbbb
+client.urgent            #bbbbbb   #bbbbbb     #000000   #000000    #bbbbbb
+client.focused_inactive  #111111   #111111     #bbbbbb   #000000    #111111
+client.unfocused         #111111   #111111     #bbbbbb   #000000    #111111
+client.focused_tab_title #111111   #111111     #bbbbbb
 
 # Various settings.
 hide_edge_borders smart
@@ -32,7 +32,7 @@ floating_modifier $mod normal
 floating_maximum_size 1500 x 800
 
 # Startup applications.
-exec swaybg -c 000000
+exec swaybg -c 222222
 exec wl-paste --watch cliphist store
 exec mako
 exec lxsession
@@ -184,11 +184,12 @@ bar {
     status_command ~/.config/sway/bar
     height 21
     colors {
-        background #000000
-        statusline #ffffff
+        background #111111
+        statusline #bbbbbb
+
         # Workspace        Border   Background  Text
-        focused_workspace  #ffffff  #ffffff     #000000
-        inactive_workspace #222222  #222222     #ffffff
+        focused_workspace  #bbbbbb  #bbbbbb     #111111
+        inactive_workspace #222222  #222222     #bbbbbb
     }
 }
 

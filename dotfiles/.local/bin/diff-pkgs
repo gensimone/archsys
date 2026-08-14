@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 my $root = "$ENV{'HOME'}/codes/archsys";
-my $pkgs = `$root/dotfiles/.local/bin/sphinx $root/pkgs`;
+my $pkgs = `$root/dotfiles/.local/bin/sphynx $root/pkgs`;
 my $pkgs_to_exclude = "
 base
 efibootmgr

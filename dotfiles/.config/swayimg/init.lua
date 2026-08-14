@@ -36,20 +36,20 @@ swayimg.viewer.limit_preload(1)
 swayimg.viewer.limit_history(1)
 swayimg.viewer.set_mark_color(0xff808080)
 swayimg.viewer.set_text("topleft", {
-  "File: {name}",
-  "Format: {format}",
-  "File size: {sizehr}",
-  "File time: {time}",
-  "EXIF date: {meta.Exif.Photo.DateTimeOriginal}",
-  "EXIF camera: {meta.Exif.Image.Model}"
+    "File: {name}",
+    "Format: {format}",
+    "File size: {sizehr}",
+    "File time: {time}",
+    "EXIF date: {meta.Exif.Photo.DateTimeOriginal}",
+    "EXIF camera: {meta.Exif.Image.Model}"
 })
 swayimg.viewer.set_text("topright", {
-  "Image: {list.index} of {list.total}",
-  "Frame: {frame.index} of {frame.total}",
-  "Size: {frame.width}x{frame.height}"
+    "Image: {list.index} of {list.total}",
+    "Frame: {frame.index} of {frame.total}",
+    "Size: {frame.width}x{frame.height}"
 })
 swayimg.viewer.set_text("bottomleft", {
-  "Scale: {scale}"
+    "Scale: {scale}"
 })
 
 -- Slide show mode, same config as for viewer mode with the following defaults:
@@ -73,10 +73,10 @@ swayimg.gallery.limit_cache(100)
 swayimg.gallery.enable_preload(false)
 swayimg.gallery.enable_pstore(false)
 swayimg.gallery.set_text("topleft", {
-  "File: {name}"
+    "File: {name}"
 })
 swayimg.gallery.set_text("topright", {
-  "{list.index} of {list.total}"
+    "{list.index} of {list.total}"
 })
 
 swayimg.viewer.on_key("q", function() swayimg.exit() end)
@@ -112,11 +112,11 @@ function DeleteImage(mode)
         error("Invalid mode: %s", mode)
     end
     os.remove(image.path)
-    swayimg.text.set_status("File "..image.path.." removed")
+    swayimg.text.set_status("File " .. image.path .. " removed")
 end
 
 -- set a custom window title in gallery mode
 swayimg.gallery.on_image_change(function()
-  local image = swayimg.gallery.get_image()
-  swayimg.set_title("Gallery: "..image.path)
+    local image = swayimg.gallery.get_image()
+    swayimg.set_title("Gallery: " .. image.path)
 end)

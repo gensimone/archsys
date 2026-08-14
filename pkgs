@@ -5,6 +5,7 @@ batsignal
 bluetui
 bluez
 bluez-utils
+borg
 brightnessctl
 chromium
 clang
@@ -22,6 +23,7 @@ gdb
 git
 go
 gopls
+keepassxc
 libmad
 libnotify
 lua-language-server
@@ -36,6 +38,7 @@ neovim
 networkmanager
 newsboat
 nmap
+noto-fonts-emoji
 npm
 nwg-look
 obs-studio
@@ -86,8 +89,7 @@ tmux
 torbrowser-launcher
 translate-shell
 tree
-ttf-cascadia-mono-nerd
-ttf-nerd-fonts-symbols
+ttf-hack-nerd
 tuned-ppd
 unzip
 upower

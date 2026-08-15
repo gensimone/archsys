@@ -5,20 +5,15 @@ set $down j
 set $up k
 set $right l
 set $term foot
-set $font Hack Nerd Font Mono 12
-set $menu-args -b -p '>' -i -f '$font' -N 111111 -n bbbbbb -S bbbbbb -s 111111 -M bbbbbb -m 111111
+set $font CaskaydiaCove Nerd Font 12
+set $menu-args -b -p '>' -i -f '$font'
 set $launcher wmenu-run $menu-args
 set $menu wmenu $menu-args
 set $screenshot_cmd grim && notify-send "Screenshot taken."
 
-# Colors                 # Border  Background  Text     Indicator  Child Border
-client.focused           #bbbbbb   #bbbbbb     #000000   #000000    #bbbbbb
-client.urgent            #bbbbbb   #bbbbbb     #000000   #000000    #bbbbbb
-client.focused_inactive  #111111   #111111     #bbbbbb   #000000    #111111
-client.unfocused         #111111   #111111     #bbbbbb   #000000    #111111
-client.focused_tab_title #111111   #111111     #bbbbbb
-
 # Various settings.
+default_border pixel 2
+default_floating_border pixel 2
 hide_edge_borders smart
 focus_follows_mouse no
 font pango:$font
@@ -32,7 +27,7 @@ floating_modifier $mod normal
 floating_maximum_size 1500 x 800
 
 # Startup applications.
-exec swaybg -c 222222
+exec swaybg -i /home/simone/pictures/wallpapers/beaver.pjpg
 exec wl-paste --watch cliphist store
 exec mako
 exec lxsession
@@ -69,10 +64,7 @@ bindsym $mod+c exec ~/.local/bin/wmenu-clip -c $menu-args
 bindsym $mod+x exec ~/.local/bin/wmenu-kill $menu-args
 bindsym $mod+n exec ~/.local/bin/wmenu-conn --rescan no -- $menu-args
 bindsym $mod+Shift+n exec ~/.local/bin/wmenu-conn --rescan yes -- $menu-args
-bindsym $mod+r exec ~/.local/bin/wmenu-rfc $menu-args
-bindsym $mod+s exec ~/.local/bin/wmenu-search $menu-args
 bindsym $mod+v exec ~/.local/bin/wmenu-trans $menu-args
-bindsym $mod+w exec ~/.local/bin/wmenu-wiki $menu-args
 bindsym $mod+d exec ~/.local/bin/wmenu-dict $menu-args
 
 # Essential keymaps.
@@ -82,8 +74,7 @@ bindsym $mod+p exec $launcher
 bindsym $mod+Shift+e exec swaynag -t warning -m '' -B 'Yes, exit sway' 'swaymsg exit'
 
 # Change colorscheme.
-bindsym $mod+z exec killall -SIGUSR2 foot
-bindsym $mod+Shift+z exec killall -SIGUSR1 foot
+bindsym $mod+z exec ~/.local/bin/switch-theme
 
 # Reload this config file.
 bindsym $mod+Shift+r reload
@@ -183,14 +174,6 @@ bar {
     position bottom
     status_command ~/.config/sway/bar
     height 21
-    colors {
-        background #111111
-        statusline #bbbbbb
-
-        # Workspace        Border   Background  Text
-        focused_workspace  #bbbbbb  #bbbbbb     #111111
-        inactive_workspace #222222  #222222     #bbbbbb
-    }
 }
 
 # Source system-wide sway drop-in files.

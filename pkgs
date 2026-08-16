@@ -110,6 +110,7 @@ wmenu
 xdg-desktop-portal-gtk
 xdg-desktop-portal-wlr
 xdg-user-dirs
+xorg-xwayland
 yt-dlp
 zathura
 zathura-pdf-mupdf

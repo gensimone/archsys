@@ -6,7 +6,7 @@ set $up k
 set $right l
 set $term foot
 set $font CaskaydiaCove Nerd Font 12
-set $menu-args -b -p '>' -i -f '$font'
+set $menu-args -p '>' -i -f '$font'
 set $launcher wmenu-run $menu-args
 set $menu wmenu $menu-args
 set $screenshot_cmd grim && notify-send "Screenshot taken."
@@ -24,7 +24,7 @@ output HDMI-A-1 mode 1920x1080 pos 1920 0
 
 # Floating windows.
 floating_modifier $mod normal
-floating_maximum_size 1500 x 800
+# floating_maximum_size 1500 x 800
 
 # Startup applications.
 exec swaybg -i /home/simone/pictures/wallpapers/beaver.pjpg
@@ -171,7 +171,7 @@ for_window [app_id="rfc"] floating enable
 
 # Statusbar.
 bar {
-    position bottom
+    position top
     status_command ~/.config/sway/bar
     height 21
 }

@@ -17,7 +17,7 @@ while true; do
     fi
 
     # Date and time.
-    date="$(date +'%a %b %d %H:%M:%S')"
+    date="$(date +'%a %b %d %H:%M')"
 
     # Network.
     network=
@@ -46,5 +46,5 @@ while true; do
 
     echo "$bar"
 
-    sleep 1
+    sleep 3
 done

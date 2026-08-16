@@ -1,0 +1,35 @@
+#!/bin/sh
+
+set -e
+
+CURR_THEME="$HOME/.theme"
+DARK_D="$HOME/.local/bin/switch-theme-dark.d"
+LIGHT_D="$HOME/.local/bin/switch-theme-light.d"
+
+if [ -f "$CURR_THEME" ]; then
+    PREV_THEME=$(cat "$CURR_THEME")
+else
+    PREV_THEME="light"
+fi
+
+exec_drop_in() {
+    for file in "$1"/*.sh; do
+        . "$file"
+    done
+}
+
+set_dark_theme() {
+    exec_drop_in $DARK_D
+    echo "dark" > "$CURR_THEME"
+}
+
+set_light_theme() {
+    exec_drop_in $LIGHT_D
+    echo "light" > "$CURR_THEME"
+}
+
+if [ "$PREV_THEME" == "light" ]; then
+    set_dark_theme
+else
+    set_light_theme
+fi

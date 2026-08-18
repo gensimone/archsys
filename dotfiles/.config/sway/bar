@@ -21,7 +21,7 @@ while true; do
 
     # Network.
     network=
-    for ndev in $(ip -br a | tail +2 | awk '{print $1}'); do
+    for ndev in $(ip -br a | tail +2 | grep -F 'UP' | awk '{print $1}'); do
         ndev_data="$(nmcli | grep $ndev | head -1)"
         if [ -z "$network" ]; then
             network="$ndev_data"

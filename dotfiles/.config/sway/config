@@ -27,13 +27,13 @@ floating_modifier $mod normal
 # floating_maximum_size 1500 x 800
 
 # Startup applications.
-exec swaybg -i /home/simone/pictures/wallpapers/beaver.pjpg
 exec wl-paste --watch cliphist store
 exec mako
 exec lxsession
 exec foot --app-id=pulsemixer pulsemixer
 exec foot --app-id=dropdown --override=initial-window-size-pixels=1200x750
 exec python ~/.config/sway/autotiling
+exec ~/.local/bin/switch-theme dark
 exec swayidle -w \
          timeout 600 'swaylock' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
@@ -164,7 +164,6 @@ bindsym $mod+Ctrl+Right resize grow width 25px
 # Rules.
 for_window [app_id="pulsemixer"] move scratchpad
 for_window [app_id="dropdown"] move scratchpad
-for_window [app_id="org.pwmt.zathura"] floating enable
 for_window [app_id="mpv"] floating enable
 for_window [app_id="swayimg"] floating enable
 for_window [app_id="rfc"] floating enable

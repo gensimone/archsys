@@ -1,10 +1,13 @@
 #!/bin/sh
 
+# This script allows to toggle dark and light theme.
+# It also allows to set a specific theme using the 'dark' and 'light' flags.
+
 set -e
 
-CURR_THEME="$HOME/.theme"
-DARK_D="$HOME/.local/bin/switch-theme-dark.d"
-LIGHT_D="$HOME/.local/bin/switch-theme-light.d"
+CURR_THEME="$HOME/.theme"                        # Last theme used.
+DARK_D="$HOME/.local/bin/switch-theme-dark.d"    # Dark Drop-in scripts.
+LIGHT_D="$HOME/.local/bin/switch-theme-light.d"  # Light Drop-in scripts.
 
 exec_drop_in() {
     for file in "$1"/*.sh; do
@@ -22,15 +25,33 @@ set_light_theme() {
     echo "light" > "$CURR_THEME"
 }
 
-if [ $# -gt 0 ]; then
-    if [ $1 == "dark" ]; then
-        set_dark_theme
-    else
-        set_light_theme
-    fi
-elif [ -f "$CURR_THEME" ]; then
+if [ -f "$CURR_THEME" ]; then
     PREV_THEME=$(cat "$CURR_THEME")
-    if [ $PREV_THEME == "dark" ]; then
+fi
+
+# Set the specified theme.
+if [ $# -gt 0 ]; then
+    if [ $1 == "prev" ]; then
+        if [ -z $PREV_THEME ] || [ "$PREV_THEME" == "dark" ]; then
+            set_dark_theme
+        else
+            set_light_theme
+        fi
+    elif [ $1 == "dark" ]; then
+        set_dark_theme
+    elif [ $1 == "light" ]; then
+        set_light_theme
+    else
+        echo "Invalid option: $1" >&2
+        exit 1
+    fi
+
+    exit 0
+fi
+
+# Toggle theme.
+if [ -n "$PREV_THEME" ]; then
+    if [ "$PREV_THEME" == "dark" ]; then
         set_light_theme
     else
         set_dark_theme
@@ -38,4 +59,3 @@ elif [ -f "$CURR_THEME" ]; then
 else
     set_dark_theme
 fi
-

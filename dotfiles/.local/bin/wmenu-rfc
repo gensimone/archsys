@@ -1,9 +1,0 @@
-#!/bin/sh
-
-rfc="/usr/share/doc/rfc/txt"
-
-selected=$(ls $rfc | tail -n +2 | wmenu "$@" -l 5)
-
-if [ -n "$selected" ]; then
-    foot --app-id=rfc less $rfc/$selected
-fi

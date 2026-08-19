@@ -12,8 +12,9 @@ set $menu wmenu $menu-args
 set $screenshot_cmd grim && notify-send "Screenshot taken."
 
 # Various settings.
-default_border pixel 2
-default_floating_border pixel 2
+gaps inner 10
+default_border pixel 3
+default_floating_border pixel 3
 hide_edge_borders smart
 focus_follows_mouse no
 font pango:$font
@@ -47,6 +48,10 @@ input type:touchpad {
     natural_scroll enabled
     middle_emulation enabled
 }
+
+# Opacity
+set $opacity 0.95
+for_window [app_id="foot"] opacity $opacity
 
 # Keyboard configuration.
 input type:keyboard {

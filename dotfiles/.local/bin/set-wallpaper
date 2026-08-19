@@ -1,0 +1,50 @@
+#!/bin/sh
+
+if ! command -v swaybg >/dev/null; then
+    echo "Missing dependency: swaybg" >&2
+    exit 1
+fi
+
+
+usage="Usage: set-wallpaper <image>"
+
+if ! [ $# -eq 1 ]; then
+    echo "Invalid number of arguments" >&2
+    echo $usage >&2
+    exit 1
+fi
+
+
+wallpaper=$1
+
+if ! [ -f $wallpaper ]; then
+    echo "Not a file: $wallpaper" >&2
+    echo $usage >&2
+    exit 1
+fi
+
+
+if [ ${wallpaper:0:2} == "./" ]; then
+    wallpaper=${wallpaper:2}
+fi
+
+if [ ${wallpaper:0:1} != "/" ]; then
+    wallpaper="$PWD/${wallpaper}"
+fi
+
+swaybg_pids=`pidof swaybg`
+if [ $? -eq 0 ]; then
+    kill $swaybg_pids
+fi
+
+
+set -e
+
+set_wallpaper_cmd="swaybg -i $wallpaper"
+`$set_wallpaper_cmd` &
+
+
+# Same as feh
+set_last_wallpaper_script=$HOME/.swaybg
+echo $set_wallpaper_cmd > $set_last_wallpaper_script
+chmod +x $set_last_wallpaper_script

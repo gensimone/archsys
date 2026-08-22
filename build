@@ -8,7 +8,11 @@ $SPHINX $ROOT/pkgs | sudo pacman --needed --noconfirm -Syu -
 
 exec_func() {
     file=`$SPHINX "$1"`
-    [ -z "$file" ] && return
+
+    if [ -z "$file" ]; then
+        return
+    fi
+
     for line in "$file"; do
         "$2" "$line"
     done

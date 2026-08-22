@@ -15,7 +15,6 @@ set $screenshot_cmd grim && notify-send "Screenshot taken."
 gaps inner 10
 default_border pixel 3
 default_floating_border pixel 3
-hide_edge_borders smart
 focus_follows_mouse no
 font pango:$font
 
@@ -172,7 +171,6 @@ for_window [app_id="pulsemixer"] move scratchpad
 for_window [app_id="dropdown"] move scratchpad
 for_window [app_id="mpv"] floating enable
 for_window [app_id="swayimg"] floating enable
-for_window [app_id="rfc"] floating enable
 
 # Statusbar.
 bar {

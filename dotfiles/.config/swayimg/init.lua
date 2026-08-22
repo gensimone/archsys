@@ -120,3 +120,9 @@ swayimg.gallery.on_image_change(function()
     local image = swayimg.gallery.get_image()
     swayimg.set_title("Gallery: " .. image.path)
 end)
+
+-- set the current focused image as wallpaper
+swayimg.gallery.on_key("w", function()
+    local image = swayimg.gallery.get_image()
+    os.execute("set-wallpaper " .. image.path)
+end)

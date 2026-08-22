@@ -1,5 +1,5 @@
 indicator-radius=75
 color=000000
 font=CaskaydiaCove Nerd Font
-font-size=15
+font-size=13.5
 daemonize

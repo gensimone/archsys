@@ -42,7 +42,7 @@ fi
 
 set -e
 
-set_wallpaper_cmd="swaybg -i $wallpaper"
+set_wallpaper_cmd="swaybg -m fill -i $wallpaper"
 `$set_wallpaper_cmd` &
 
 

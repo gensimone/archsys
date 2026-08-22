@@ -13,7 +13,7 @@ exec_func() {
         return
     fi
 
-    for line in "$file"; do
+    for line in $file; do
         "$2" "$line"
     done
 }
@@ -27,7 +27,7 @@ enable_system_wide_service() {
 }
 
 create_group() {
-    sudo groupadd $1
+    sudo groupadd -r "$1"
 }
 
 add_user_to_group() {

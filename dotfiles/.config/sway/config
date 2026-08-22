@@ -72,6 +72,9 @@ bindsym $mod+Shift+n exec ~/.local/bin/wmenu-conn --rescan yes -- $menu-args
 bindsym $mod+v exec ~/.local/bin/wmenu-trans $menu-args
 bindsym $mod+d exec ~/.local/bin/wmenu-dict $menu-args
 
+# Swayimg
+bindsym $mod+g exec swayimg --gallery ~/pictures/*
+
 # Essential keymaps.
 bindsym $mod+Escape exec swaylock
 bindsym $mod+Return exec $term

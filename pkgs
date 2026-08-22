@@ -13,6 +13,7 @@ cmake
 cmus
 dnsmasq
 docker
+docker-compose
 dosfstools
 fastfetch
 fd

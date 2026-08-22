@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cat <<EOF | sudo tee /root/.bashrc
-[[ $- != *i* ]] && return
+[[ \$- != *i* ]] && return
 
 alias rm='rm -i'
 alias cp='cp -i'

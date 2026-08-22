@@ -5,14 +5,14 @@ set $down j
 set $up k
 set $right l
 set $term foot
-set $font CaskaydiaCove Nerd Font 10.5
+set $font CaskaydiaCove Nerd Font 10
 set $menu-args -p '>' -i -f '$font'
 set $launcher wmenu-run $menu-args
 set $menu wmenu $menu-args
 set $screenshot_cmd grim && notify-send "Screenshot taken."
 
 # Various settings.
-gaps inner 10
+gaps inner 5
 default_border pixel 3
 default_floating_border pixel 3
 focus_follows_mouse no
@@ -49,7 +49,7 @@ input type:touchpad {
 }
 
 # Opacity
-set $opacity 0.95
+set $opacity 0.85
 for_window [app_id="foot"] opacity $opacity
 
 # Keyboard configuration.
@@ -73,7 +73,7 @@ bindsym $mod+v exec ~/.local/bin/wmenu-trans $menu-args
 bindsym $mod+d exec ~/.local/bin/wmenu-dict $menu-args
 
 # Swayimg
-bindsym $mod+g exec swayimg --fullscreen --gallery ~/pictures/*
+bindsym $mod+g exec swayimg --fullscreen --gallery ~/pictures/wallpapers/*
 
 # Essential keymaps.
 bindsym $mod+Escape exec swaylock
@@ -179,7 +179,7 @@ for_window [app_id="swayimg"] floating enable
 bar {
     position top
     status_command ~/.config/sway/bar
-    height 21
+    height 19
 }
 
 # Source system-wide sway drop-in files.

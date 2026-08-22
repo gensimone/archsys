@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cat <<EOF | sudo tee /root/.bashrc
+cat <<EOF | sudo tee /root/.bashrc 1>/dev/null
 [[ \$- != *i* ]] && return
 
 alias rm='rm -i'

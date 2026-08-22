@@ -11,8 +11,10 @@ clang
 cliphist
 cmake
 cmus
+dnsmasq
 docker
 dosfstools
+fastfetch
 fd
 firefox
 firewalld
@@ -46,6 +48,7 @@ npm
 nwg-look
 obs-studio
 openssh
+pcmanfm
 php
 pipewire
 pipewire-alsa

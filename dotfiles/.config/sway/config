@@ -73,7 +73,7 @@ bindsym $mod+v exec ~/.local/bin/wmenu-trans $menu-args
 bindsym $mod+d exec ~/.local/bin/wmenu-dict $menu-args
 
 # Swayimg
-bindsym $mod+g exec swayimg --fullscreen --gallery ~/pictures/*
+bindsym $mod+g exec swayimg --fullscreen --gallery ~/pictures/wallpapers*
 
 # Essential keymaps.
 bindsym $mod+Escape exec swaylock

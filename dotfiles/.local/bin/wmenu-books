@@ -2,8 +2,8 @@
 
 books="$HOME/documents/books"
 
-selected=$(find $books -exec basename {} \; | tail -n +2 | wmenu "$@" -l 5)
+selected=$(find $books | tail -n +2 | wmenu "$@" -l 5)
 
 if [ -n "$selected" ]; then
-    zathura "$books/$selected"
+    zathura "$selected"
 fi

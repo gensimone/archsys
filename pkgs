@@ -17,7 +17,7 @@ docker-compose
 dosfstools
 fastfetch
 fd
-firefox
+chromium
 firewalld
 foot
 fzf
@@ -78,7 +78,6 @@ qt5-speech
 qt5-svg
 qt5-tools
 qt5-translations
-qt5-virtualkeyboard
 qt5-wayland
 qt5-x11extras
 qt5-xmlpatterns
@@ -99,7 +98,6 @@ torbrowser-launcher
 translate-shell
 tree
 ttf-cascadia-code-nerd
-tuned-ppd
 unzip
 upower
 valgrind

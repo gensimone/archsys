@@ -1,11 +1,13 @@
 adw-gtk-theme
 bash-completion
 bash-language-server
+batsignal
 bluetui
 bluez
 bluez-utils
 borg
 brightnessctl
+chromium
 clang
 cliphist
 cmake
@@ -16,7 +18,6 @@ docker-compose
 dosfstools
 fastfetch
 fd
-firefox
 firewalld
 foot
 fzf
@@ -26,6 +27,7 @@ git
 go
 gopls
 gst-plugin-pipewire
+kanshi
 keepassxc
 libmad
 libnotify
@@ -61,6 +63,7 @@ python-pip
 python-pipx
 python-poetry
 qbittorrent
+qemu-base
 qt5-base
 qt5-declarative
 qt5-graphicaleffects
@@ -75,7 +78,6 @@ qt5-speech
 qt5-svg
 qt5-tools
 qt5-translations
-qt5-virtualkeyboard
 qt5-wayland
 qt5-x11extras
 qt5-xmlpatterns
@@ -92,15 +94,17 @@ swaylock
 syncthing
 telegram-desktop
 tmux
+torbrowser-launcher
 translate-shell
 tree
 ttf-cascadia-code-nerd
-tuned-ppd
 unzip
 upower
 valgrind
+virt-manager
 wget
 wireplumber
+wireshark-qt
 wl-clipboard
 wlopm
 wmenu
